@@ -1,0 +1,80 @@
+/*Cuerpo*/
+body {
+    color: aliceblue;
+    background-color: #0f0f0f;
+    margin: 40px 73px 50px 73px;
+    font-family: 'Noto Sans';
+}
+
+/*Titulo*/
+header h1 {
+    font-size: 49px;
+    text-align: center;
+}
+
+header h2 {
+    font-size: 34px;
+    color: rgb(255, 252, 252);
+}
+
+#titulo img {
+    width: 100%;
+    /*height: 400px;*/
+    text-align: center;
+}
+
+/*Contenido*/
+section {
+    font-size: 20px;
+}
+
+/*si*/
+.descripción {
+    background: #27364d;
+    /* margin: 0px -73px 0px -73px; */
+    padding: 70px 0px 100px 0px;
+    text-align: center;
+}
+
+/*no*/
+.conocimientos {
+    padding: 0px 0px 30px 0px;
+    text-align: center;
+
+}
+
+.conocimientos img {
+    margin: 0px 30px 0px 30px;
+}
+
+/*si*/
+.rs {
+    background: #27364d;
+    /* margin: 0px -73px 0px -73px; */
+    padding: 1px 0px 30px;
+    text-align: center;
+}
+
+.rs img {
+    margin: 0px 30px 0px 30px;
+}
+
+a {
+    color: aliceblue;
+}
+
+a:hover {
+    color: #d1d1d1;
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*Pie de pagina*/
+footer p {
+    text-align: right;
+}
+
+/* #ffffff */
