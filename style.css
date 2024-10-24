@@ -1,52 +1,124 @@
-/* Estilos generales */
-
-.container {
-    max-width: 1200px;
+body {
+    font-family: 'Noto Sans';
+    font-size: 20px;
+    max-width: 1300px;
     margin: 0 auto;
-    /* Centra el contenido */
 }
 
-/* Estilos del header */
-
-.header-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #fff;
-    /* O el color de fondo que desees */
-    padding: 0px 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+header {
+    h1 {}
 }
 
 #Perfil {
-    margin-top: 120px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
     width: 100%;
     height: auto;
+    border-radius: 15px;
+    box-shadow: 5px 5px 15px;
+}
 
-    @media (max-width: 768px) {
-        width: 80%; /* Ajusta el ancho máximo para pantallas más pequeñas */
+.des {
+    background-color: rgb(232, 234, 237);
+    height: 100%;
+    margin-top: 35px;
+    border-radius: 15px;
+    padding: 10px 20px;
+    box-shadow: 5px 5px 5px;
+}
+
+/*Descripcion*/
+.Descripcion h2 {
+    margin: 0px 0px -10px;
+    padding: 0;
+    border: 0;
+}
+
+/*Tarjetas de experiencia*/
+.Titulo_P {
+    grid-area: miArea;
+}
+
+.exp {
+    display: grid;
+    grid-template-areas: 'miArea miArea miArea';
+}
+
+.Tarjeta {
+    border-radius: 15px;
+    background-color: rgb(232, 234, 237);
+    box-shadow: 5px 5px 5px;
+    width: 360px;
+    height: 235px;
+    padding: 0px 20px;
+
+    h3 {
+        font-size: 20px;
+    }
+
+    p {
+        font-size: 16px;
     }
 }
 
-/* Estilos para los botones (ajusta según tu diseño) */
+/*Tarjetas de proyectos*/
 
-.header-container nav ul {
-    list-style: none;
-    display: flex;
+.T_P {
+    grid-area: miArea;
 }
 
-.header-container nav li {
-    margin-left: 10px;
+.proyectos {
+    display: grid;
+    grid-template-areas: 'miArea miArea miArea';
 }
 
-/* Estilos para el section (ajusta según tu diseño) */
+.Tarj {
+    background-color: rgb(232, 234, 237);
+    box-shadow: 5px 5px 5px;
+    border-radius: 15px;
+    width: 80%;
+    height: 350px;
+    padding: 0px 20px;
 
-section {
-    padding: 20px;
+    h3 {
+        font-size: 20px;
+    }
+
+    p {
+        font-size: 16px;
+    }
 }
 
-/* Estilos adicionales para personalizar el diseño */
+/*Habilidades*/
+
+.habilidades {}
+
+.Globos {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+
+    p {
+        text-align: center;
+        background-color: rgb(232, 234, 237);
+        border-radius: 50px;
+        padding: 20px 20px 0px;
+        width: 60%;
+        height: 50px;
+        box-shadow: 5px 5px 5px;
+    }
+}
+
+/*Conocimientos*/
+
+.Iconos {
+    text-align: center;
+    background-color: rgb(232, 234, 237);
+    border-radius: 50px;
+    margin: 0px 0px 55px;
+    box-shadow: 5px 5px 10px;
+
+    img {
+        margin: 15px 15px 5px;
+    }
+}
