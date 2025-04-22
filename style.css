@@ -19,18 +19,47 @@ body {
     margin: 30px 160px;
 }
 
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    /* Espaciado entre el header y la imagen */
+}
+
 .Titulo {
     font-size: 30px;
-    margin: 30px 3px;
+    margin: 0;
     padding: 0;
-    border: 0;
+}
+
+#modo {
+    margin-left: auto;
+    padding: -10px 10px;
+    font-size: 30px;
+    height: 50px;
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    background-color: (232, 234, 237)parent;
+    box-shadow: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#modo:hover {
+    background-color: #1c2833;
+    box-shadow: 5px 5px 10px;
+    transition: all 0.3s ease-in-out;
 }
 
 .Perfil {
     display: block;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
+    /* Centra la imagen horizontalmente */
     width: 100%;
+
     height: auto;
     border-radius: 15px;
     box-shadow: 5px 5px 15px;
@@ -101,20 +130,16 @@ body {
 .habilidades {}
 
 .Globos {
-    margin-top: -25px;
-    display: flex;
-    justify-content: space-between;
+    background-color: rgb(232, 234, 237);
+    border-radius: 15px;
+    box-shadow: 5px 5px 5px;
+    padding: 3px 20px;
+    margin: 0px 0px 0px 0px;
+    height: auto;
+    width: auto;
 
     p {
-        font-size: 17px;
-        text-align: center;
-        background-color: rgb(232, 234, 237);
-        border-radius: 50px;
-        padding: 20px 0px 0px;
-        margin: 35px 13px 10px 0px;
-        width: 28%;
-        height: 50px;
-        box-shadow: 5px 5px 5px;
+        font-size: 16px;
     }
 }
 
@@ -125,7 +150,7 @@ body {
     box-shadow: 5px 5px 10px;
     padding: 10px 10px 10px 35px;
     margin-top: 35px;
-    width: 100%;
+    width: auto;
 
     img {
         border: 0;
@@ -138,6 +163,7 @@ body {
 @media (max-width: 1200px) {
     body {
         margin: 20px 80px;
+        font-size: 20px;
     }
 
     .exp {
@@ -146,18 +172,19 @@ body {
     }
 
     .Tarjeta {
-        width: 100%;
+        width: auto;
         margin-bottom: 20px;
     }
 
+
     .Globos {
-        flex-direction: column;
-        align-items: center;
+        width: auto;
+        margin: 15px 0;
     }
 
-    .Globos p {
-        width: 80%;
-        margin: 15px 0;
+    .Iconos {
+        padding: 10px;
+        width: auto;
     }
 }
 
@@ -168,7 +195,7 @@ body {
 
     .Titulo {
         font-size: 23px;
-        text-align: center;
+        text-align: left;
     }
 
     .Perfil {
@@ -185,22 +212,22 @@ body {
     }
 
     .Tarjeta {
-        width: 93%;
+        width: auto;
         margin-bottom: 25px;
     }
 
     .Globos {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .Globos p {
-        width: 90%;
+        width: auto;
         margin: 10px 0;
     }
 
     .Iconos {
         padding: 10px;
+        width: auto;
+
+        h3 {
+            text-align: center;
+        }
     }
 }
 
@@ -210,7 +237,7 @@ body {
     }
 
     .Titulo {
-        text-align: center;
+        text-align: left;
         font-size: 21px;
     }
 
@@ -219,22 +246,26 @@ body {
     }
 
     .Tarjeta {
-        width: 90%;
+        font-size: 18px;
+        width: auto;
+        height: 380px;
         margin-bottom: 25px;
     }
 
-    .Globos p {
-        font-size: 14px;
+    .Globos {
+        font-size: 18px;
         padding: 10px 0;
+        width: auto;
     }
-    
+
     .Iconos {
-        width: 95%;
-        h3{
+        width: auto;
+
+        h3 {
             text-align: center;
         }
-        text-align: center;
-        img{
+
+        img {
             margin: 10px;
         }
     }
