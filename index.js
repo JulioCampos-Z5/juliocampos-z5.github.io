@@ -4,6 +4,7 @@ botonModo.addEventListener("click", cambiarModo); // Evento para cambiar el modo
 
 function cambiarModo() {
     let fondo = document.querySelector("*");
+    let btnCont = document.querySelectorAll(".btnCont");
     let header = document.querySelector("header");
     let encabezado = document.querySelector(".encabezado");
     let perfil = document.querySelector(".Perfil");
@@ -16,6 +17,9 @@ function cambiarModo() {
     if (modoOscuro) {
         fondo.style.backgroundColor = "#17202a";
         fondo.style.color = "white";
+        btnCont.forEach((btnCont) => {
+            btnCont.style.backgroundColor = "#1c2833";
+        });
         header.style.backgroundColor = "#17202a";
         encabezado.style.backgroundColor = "#17202a";
         perfil.style.boxShadow = "5px 5px 5px black";
@@ -45,6 +49,9 @@ function cambiarModo() {
     } else {
         fondo.style.backgroundColor = "";
         fondo.style.color = "";
+        btnCont.forEach((btnCont) => {
+            btnCont.style.backgroundColor = "";
+        });
         header.style.backgroundColor = "";
         encabezado.style.backgroundColor = "";
         perfil.style.boxShadow = "";
@@ -82,3 +89,9 @@ document.addEventListener("scroll", () => {
         header.classList.remove("scroll");
     }
 });
+
+function copyToClipboard(text) {
+    navigator.clipboard.writeText(text).then(() => {
+        alert('Texto copiado al portapapeles: ' + text);
+    });
+}

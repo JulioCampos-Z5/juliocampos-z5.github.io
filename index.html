@@ -18,9 +18,50 @@
             <button id="modo">🌑</button>
         </div>
     </header>
-    
+
     <section class="container">
         <img class="Perfil" src="img/Pro.jpg" alt="Perfil">
+
+        <h2>Contacto:</h2>
+        <div>
+            <div class="btnCont">
+                <span>julioz5435@gmil.com</span>
+                <a href="mailto:julioz5435@gmial.com" target="_blank">
+                    <ion-icon name="link-outline"></ion-icon>
+                </a>
+                <button onclick="copyToClipboard('julioz5435@gmial.com')">
+                    <ion-icon name="copy-outline"></ion-icon>
+                </button>
+            </div>
+            <div class="btnCont">
+                <span>+52 3339057215</span>
+                <a href="tel:+523329057215" target="_blank">
+                    <ion-icon name="link-outline"></ion-icon>
+                </a>
+                <button class="btnCopy" onclick="copyToClipboard('+523329057215')">
+                    <ion-icon name="copy-outline"></ion-icon>
+                </button>
+            </div>
+            <div class="btnCont">
+                <span>WhatsApp</span>
+                <a href="https://wa.me/qr/UXKOCPRLXDN2J1" target="_blank">
+                    <ion-icon name="link-outline"></ion-icon>
+                </a>
+                <button class="btnCopy" onclick="copyToClipboard('https://wa.me/qr/UXKOCPRLXDN2J1')">
+                    <ion-icon name="copy-outline"></ion-icon>
+                </button>
+            </div>
+            <div class="btnCont">
+                <span>LinkedIn</span>
+                <a href="https://www.linkedin.com/in/julio-cesar-campos-aguilar-b3a53b278" target="_blank">
+                    <ion-icon name="link-outline"></ion-icon>
+                </a>
+                <button class="btnCopy"
+                    onclick="copyToClipboard('https://www.linkedin.com/in/julio-cesar-campos-aguilar-b3a53b278')">
+                    <ion-icon name="copy-outline"></ion-icon>
+                </button>
+            </div>
+        </div>
 
         <h2 class="subtitulo">Descripción</h2>
         <article class="des"><!--Descripción-->
@@ -125,6 +166,8 @@
         <footer><!-- --></footer>
 
         <script src="index.js"></script>
+        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 
 </html>

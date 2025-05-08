@@ -82,6 +82,62 @@ header {
     box-shadow: 5px 5px 15px;
 }
 
+/* Estilo para los contenedores de contacto */
+.btnCont {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Espaciado entre el texto y los botones */
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    padding: 10px 20px;
+    margin: 10px 0;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+    width: 350px; /* Ancho fijo */
+    height: 60px; /* Alto fijo */
+    box-sizing: border-box;
+}
+
+.btnCont span {
+    flex-grow: 1; /* Permite que el texto ocupe el espacio disponible */
+    text-align: left; /* Alinea el texto a la izquierda */
+}
+
+.btnCont a,
+.btnCont button {
+    margin-left: 10px; /* Espaciado entre los botones */
+}
+
+/* Estilo para los botones dentro de btnCont */
+.btnCont button,
+.btnCont a {
+    display: flex; /* Habilita el modelo flexbox */
+    align-items: center; /* Centra verticalmente */
+    justify-content: center; /* Centra horizontalmente */
+    margin-left: 10px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 50px;
+    color: rgb(87, 87, 87);
+    cursor: pointer;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btnCont button:hover,
+.btnCont a:hover {
+    background-color: #ffffff;
+    transform: scale(1.1);
+}
+
+/* Alinear los contenedores btnCont de forma horizontal */
+.container > div {
+    display: flex;
+    flex-wrap: wrap; /* Permite que los elementos se ajusten si no caben en una línea */
+    gap: 20px; /* Espaciado entre los contenedores */
+    justify-content: center; /* Centra los contenedores horizontalmente */
+}
+
 .des {
     background-color: rgb(232, 234, 237);
     border-radius: 15px;
@@ -227,6 +283,16 @@ header {
         width: 100%;
     }
 
+    .btnCont {
+        width: 100%;
+        height: auto;
+        padding: 10px 20px;
+    }
+
+    .container > div {
+        gap: 0px; /* Espaciado entre los contenedores */
+    }
+
     .des {
         padding: 10px 20px;
     }
@@ -274,6 +340,16 @@ header {
     .Titulo {
         text-align: left;
         font-size: 21px;
+    }
+
+    .btnCont {
+        width: 100%;
+        height: auto;
+        padding: 10px 20px;
+    }
+
+    .container > div {
+        gap: 0px; /* Espaciado entre los contenedores */
     }
 
     .des {
