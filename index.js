@@ -13,7 +13,6 @@ function cambiarModo() {
     let globos = document.querySelector(".Globos");
     let iconos = document.querySelector(".Iconos");
 
-
     if (modoOscuro) {
         fondo.style.backgroundColor = "#17202a";
         fondo.style.color = "white";
