@@ -58,7 +58,7 @@ header {
     cursor: pointer;
     border: none;
     border-radius: 10px;
-    background-color: (232, 234, 237)parent;
+    background-color: rgb(232, 234, 237)parent;
     box-shadow: none;
     display: flex;
     align-items: center;

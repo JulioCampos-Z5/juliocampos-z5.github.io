@@ -5,6 +5,7 @@ botonModo.addEventListener("click", cambiarModo); // Evento para cambiar el modo
 function cambiarModo() {
     let fondo = document.querySelector("*");
     let btnCont = document.querySelectorAll(".btnCont");
+    let btn = document.querySelector("#modo");
     let header = document.querySelector("header");
     let encabezado = document.querySelector(".encabezado");
     let perfil = document.querySelector(".Perfil");
@@ -69,11 +70,13 @@ function cambiarModo() {
         iconos.style.boxShadow = "";
 
         botonModo.textContent = "🌑"; // Cambia el texto del botón
+        botonModo.style.backgroundColor = "#f0f0f0"; // Cambia el color de fondo del botón
         botonModo.addEventListener("mouseenter", () => {
             botonModo.style.backgroundColor = "#1c2833"; // Cambia el cursor al pasar el mouse
+
         });
         botonModo.addEventListener("mouseleave", () => {
-            botonModo.style.backgroundColor = "#fff"; // Cambia el cursor al salir el mouse
+            botonModo.style.backgroundColor = "#f0f0f0";
         });
     }
 
