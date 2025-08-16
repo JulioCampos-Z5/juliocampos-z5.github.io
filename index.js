@@ -83,6 +83,18 @@ function cambiarModo() {
     modoOscuro = !modoOscuro; // Alterna el estado del modo oscuro
 }
 
+// Detectar preferencia de modo oscuro del sistema
+if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    modoOscuro = true;
+} else {
+    modoOscuro = false;
+}
+
+// Aplicar el modo correspondiente al cargar la página
+window.addEventListener('DOMContentLoaded', () => {
+    cambiarModo(); // Aplica el modo según la preferencia detectada
+});
+
 document.addEventListener("scroll", () => {
     const header = document.querySelector(".encabezado");
     if (window.scrollY > 50) {

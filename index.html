@@ -19,12 +19,11 @@
         </div>
     </header>
 
-    <section class="container">
-        <img class="Perfil" src="img/Pro.jpg" alt="Perfil">
-
-        <h2>Contacto:</h2>
-        <div>
-            <div class="btnCont">
+    <!-- NUEVO: Contactos flotantes a la izquierda -->
+    <aside class="contactos-flotantes">
+        <div class="globo-contacto email">
+            <img src="img/gmail.webp" alt="Email" width="32">
+            <div class="info-contacto">
                 <span>julioz5435@gmail.com</span>
                 <a href="mailto:julioz5435@gmail.com" target="_blank">
                     <img src="img/link-outline.svg" width="20px">
@@ -33,44 +32,59 @@
                     <img src="img/copy-outline.svg" width="20px">
                 </button>
             </div>
-            <div class="btnCont">
+        </div>
+        <div class="globo-contacto tel">
+            <img src="img/Celular.png" alt="Teléfono" width="32">
+            <div class="info-contacto">
                 <span>+52 3339057215</span>
                 <a href="tel:+523329057215" target="_blank">
                     <img src="img/link-outline.svg" width="20px">
                 </a>
-                <button class="btnCopy" onclick="copyToClipboard('+523329057215')">
-                    <img src="img/copy-outline.svg" width="20px">
-                </button>
-            </div>
-            <div class="btnCont">
-                <span>WhatsApp</span>
-                <a href="https://wa.me/qr/UXKOCPRLXDN2J1" target="_blank">
-                    <img src="img/link-outline.svg" width="20px">
-                </a>
-                <button class="btnCopy" onclick="copyToClipboard('https://wa.me/qr/UXKOCPRLXDN2J1')">
-                    <img src="img/copy-outline.svg" width="20px">
-                </button>
-            </div>
-            <div class="btnCont">
-                <span>LinkedIn</span>
-                <a href="https://www.linkedin.com/in/julio-cesar-campos-aguilar-b3a53b278" target="_blank">
-                    <img src="img/link-outline.svg" width="20px">
-                </a>
-                <button class="btnCopy"
-                    onclick="copyToClipboard('https://www.linkedin.com/in/julio-cesar-campos-aguilar-b3a53b278')">
-                    <img src="img/copy-outline.svg" width="20px">
-                </button>
-            </div>
-            <div class="btnCont">
-                <span>GitHub</span>
-                <a href="https://github.com/JulioCampos-Z5" target="_blank">
-                    <img src="img/link-outline.svg" width="20px">
-                </a>
-                <button class="btnCopy" onclick="copyToClipboard('https://github.com/JulioCampos-Z5')">
+                <button onclick="copyToClipboard('+523329057215')">
                     <img src="img/copy-outline.svg" width="20px">
                 </button>
             </div>
         </div>
+        <div class="globo-contacto whatsapp">
+            <img src="img/WhatsApp.svg.webp" alt="WhatsApp" width="32">
+            <div class="info-contacto">
+                <span>WhatsApp</span>
+                <a href="https://wa.me/qr/UXKOCPRLXDN2J1" target="_blank">
+                    <img src="img/link-outline.svg" width="20px">
+                </a>
+                <button onclick="copyToClipboard('https://wa.me/qr/UXKOCPRLXDN2J1')">
+                    <img src="img/copy-outline.svg" width="20px">
+                </button>
+            </div>
+        </div>
+        <div class="globo-contacto linkedin">
+            <img src="img/linkedin.webp" alt="LinkedIn" width="32">
+            <div class="info-contacto">
+                <span>LinkedIn</span>
+                <a href="https://www.linkedin.com/in/julio-cesar-campos-aguilar-b3a53b278" target="_blank">
+                    <img src="img/link-outline.svg" width="20px">
+                </a>
+                <button onclick="copyToClipboard('https://www.linkedin.com/in/julio-cesar-campos-aguilar-b3a53b278')">
+                    <img src="img/copy-outline.svg" width="20px">
+                </button>
+            </div>
+        </div>
+        <div class="globo-contacto github">
+            <img src="img/gitImg.png" alt="GitHub" width="32">
+            <div class="info-contacto">
+                <span>GitHub</span>
+                <a href="https://github.com/JulioCampos-Z5" target="_blank">
+                    <img src="img/link-outline.svg" width="20px">
+                </a>
+                <button onclick="copyToClipboard('https://github.com/JulioCampos-Z5')">
+                    <img src="img/copy-outline.svg" width="20px">
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <section class="container">
+        <img class="Perfil" src="img/Pro.jpg" alt="Perfil">
 
         <h2 class="subtitulo">Descripción</h2>
         <article class="des"><!--Descripción-->

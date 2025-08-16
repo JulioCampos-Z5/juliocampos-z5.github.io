@@ -232,7 +232,88 @@ header {
     }
 }
 
-/* Responsive */
+/* Contactos flotantes a la izquierda */
+.contactos-flotantes {
+    position: fixed;
+    top: 110px;
+    left: 8px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.globo-contacto {
+    background: #f0f0f0;
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    box-shadow: 1px 1px 6px rgba(0,0,0,0.13);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: box-shadow 0.2s, background 0.2s;
+    cursor: pointer;
+    padding: 0;
+}
+
+.globo-contacto img {
+    width: 22px;
+    height: 22px;
+    pointer-events: none; /* El icono no bloquea el hover */
+}
+
+.globo-contacto .info-contacto {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.18);
+    position: absolute;
+    left: 44px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 6px 10px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.18s, left 0.18s;
+    white-space: nowrap;
+    min-width: 120px;
+    z-index: 10;
+}
+
+.globo-contacto:hover .info-contacto,
+.globo-contacto .info-contacto:hover {
+    opacity: 1;
+    pointer-events: auto;
+    left: 40px;
+}
+
+.globo-contacto .info-contacto span {
+    font-size: 14px;
+    color: #222;
+}
+
+.globo-contacto .info-contacto a,
+.globo-contacto .info-contacto button {
+    background: none;
+    border: none;
+    padding: 0 2px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.globo-contacto .info-contacto a:hover,
+.globo-contacto .info-contacto button:hover {
+    background: #e0e7ef;
+}
+
 @media (max-width: 1200px) {
     .encabezado {
         margin: 0 80px;
