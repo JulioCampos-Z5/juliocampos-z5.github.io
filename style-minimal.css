@@ -1,0 +1,173 @@
+/* CSS complementario para el CV minimalista con Tailwind */
+
+* {
+    font-family: 'Noto Sans', sans-serif;
+}
+
+/* Hover y click para contactos flotantes */
+.contact-group:hover .contact-tooltip,
+.contact-group.pinned .contact-tooltip {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+}
+
+.contact-group.pinned .contact-tooltip {
+    background-color: #f3f4f6 !important;
+}
+
+.dark .contact-group.pinned .contact-tooltip {
+    background-color: #374151 !important;
+}
+
+/* Animaciones personalizadas */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fadeInUp {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* Mejoras para el slider de experiencia */
+#expSlider {
+    will-change: transform;
+}
+
+/* Efectos hover para las habilidades */
+.skill-bubble {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.skill-bubble:hover {
+    transform: translateY(-2px) scale(1.05);
+}
+
+/* Efectos para las tarjetas de tecnología */
+.tech-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tech-card:hover {
+    transform: translateY(-4px);
+}
+
+/* Smooth scroll */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Mejoras para dispositivos móviles */
+@media (max-width: 768px) {
+    .skill-bubble {
+        font-size: 0.875rem;
+        padding: 0.5rem 1rem;
+    }
+    
+    #expSlider {
+        gap: 1rem;
+    }
+    
+    .tech-card {
+        padding: 0.75rem;
+    }
+}
+
+/* Efectos de carga */
+.loading-skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* Mejoras para el modo oscuro */
+.dark .loading-skeleton {
+    background: linear-gradient(90deg, #374151 25%, #4b5563 50%, #374151 75%);
+    background-size: 200% 100%;
+}
+
+/* Personalización del scrollbar para webkit */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* Modo oscuro para scrollbar */
+.dark ::-webkit-scrollbar-track {
+    background: #374151;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+    background: #6b7280;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af;
+}
+
+/* Efectos de enfoque para accesibilidad */
+button:focus-visible,
+a:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+/* Animación para el botón de modo oscuro */
+#modo {
+    transition: all 0.3s ease;
+}
+
+#modo:active {
+    transform: scale(0.95);
+}
+
+/* Mejoras para las notificaciones */
+.notification-enter {
+    transform: translateX(100%);
+    opacity: 0;
+}
+
+.notification-enter-active {
+    transform: translateX(0);
+    opacity: 1;
+    transition: all 0.3s ease;
+}
+
+.notification-exit {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.notification-exit-active {
+    transform: translateX(100%);
+    opacity: 0;
+    transition: all 0.3s ease;
+}

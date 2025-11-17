@@ -3,7 +3,23 @@
 
 <head>
     <title>CV Julio</title>
-    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Noto Sans', 'sans-serif']
+                    },
+                    animation: {
+                        'fadeInUp': 'fadeInUp 0.6s ease-out',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="style-minimal.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
@@ -11,125 +27,232 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
-<body>
-    <header><!--Nombre, Título, imagen-->
-        <div class="encabezado">
-            <h1 class="Titulo">Julio Cesar Campos Aguilar: Desarrollador Jr</h1>
-            <button id="modo">🌑</button>
+<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <header class="sticky top-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-2xl md:text-3xl font-bold text-gray-800 dark:text-gray-100 text-left">Julio Cesar Campos Aguilar: Desarrollador Jr</h1>
+            <button id="modo" class="p-3 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                🌑
+            </button>
         </div>
     </header>
 
-    <!-- NUEVO: Contactos flotantes a la izquierda -->
-    <aside class="contactos-flotantes">
-        <div class="globo-contacto email">
-            <img src="img/gmail.webp" alt="Email" width="32">
-            <div class="info-contacto">
-                <span>julioz5435@gmail.com</span>
-                <a href="mailto:julioz5435@gmail.com" target="_blank">
-                    <img src="img/link-outline.svg" width="20px">
-                </a>
-                <button onclick="copyToClipboard('julioz5435@gmail.com')">
-                    <img src="img/copy-outline.svg" width="20px">
-                </button>
+    <!-- Contactos - Móvil horizontal arriba del header -->
+    <div class="lg:hidden bg-white dark:bg-gray-900 py-3 border-b border-gray-200 dark:border-gray-700">
+        <div class="flex justify-center gap-4 px-4">
+            <a href="mailto:julioz5435@gmail.com" target="_blank" class="w-10 h-10 bg-white dark:bg-gray-800 rounded-full shadow-md flex items-center justify-center hover:shadow-lg transition-all duration-300 border border-gray-200 dark:border-gray-600">
+                <img src="img/gmail.webp" alt="Email" class="w-5 h-5">
+            </a>
+            <a href="tel:+523329057215" target="_blank" class="w-10 h-10 bg-white dark:bg-gray-800 rounded-full shadow-md flex items-center justify-center hover:shadow-lg transition-all duration-300 border border-gray-200 dark:border-gray-600">
+                <img src="img/Celular.png" alt="Teléfono" class="w-5 h-5">
+            </a>
+            <a href="https://wa.me/qr/UXKOCPRLXDN2J1" target="_blank" class="w-10 h-10 bg-white dark:bg-gray-800 rounded-full shadow-md flex items-center justify-center hover:shadow-lg transition-all duration-300 border border-gray-200 dark:border-gray-600">
+                <img src="img/WhatsApp.svg.webp" alt="WhatsApp" class="w-5 h-5">
+            </a>
+            <a href="https://www.linkedin.com/in/julio-cesar-campos-aguilar-b3a53b278" target="_blank" class="w-10 h-10 bg-white dark:bg-gray-800 rounded-full shadow-md flex items-center justify-center hover:shadow-lg transition-all duration-300 border border-gray-200 dark:border-gray-600">
+                <img src="img/linkedin.webp" alt="LinkedIn" class="w-5 h-5">
+            </a>
+            <a href="https://github.com/JulioCampos-Z5" target="_blank" class="w-10 h-10 bg-white dark:bg-gray-800 rounded-full shadow-md flex items-center justify-center hover:shadow-lg transition-all duration-300 border border-gray-200 dark:border-gray-600">
+                <img src="img/gitImg.png" alt="GitHub" class="w-5 h-5">
+            </a>
+        </div>
+    </div>
+
+    <!-- Contactos flotantes - Desktop lateral -->
+    <aside class="fixed top-28 left-2 z-40 flex flex-col gap-3 hidden lg:flex">
+        <div class="contact-group relative">
+            <div class="w-12 h-12 bg-white dark:bg-gray-800 rounded-full shadow-lg flex items-center justify-center hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-600">
+                <img src="img/gmail.webp" alt="Email" class="w-6 h-6">
+            </div>
+            <div class="contact-tooltip absolute left-14 top-1/2 -translate-y-1/2 bg-white dark:bg-gray-800 rounded-lg shadow-xl p-3 opacity-0 pointer-events-none whitespace-nowrap border border-gray-200 dark:border-gray-600 z-10">
+                <a href="mailto:julioz5435@gmail.com" target="_blank" class="text-sm text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">julioz5435@gmail.com</a>
             </div>
         </div>
-        <div class="globo-contacto tel">
-            <img src="img/Celular.png" alt="Teléfono" width="32">
-            <div class="info-contacto">
-                <span>+52 3339057215</span>
-                <a href="tel:+523329057215" target="_blank">
-                    <img src="img/link-outline.svg" width="20px">
-                </a>
-                <button onclick="copyToClipboard('+523329057215')">
-                    <img src="img/copy-outline.svg" width="20px">
-                </button>
+        
+        <div class="contact-group relative">
+            <div class="w-12 h-12 bg-white dark:bg-gray-800 rounded-full shadow-lg flex items-center justify-center hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-600">
+                <img src="img/Celular.png" alt="Teléfono" class="w-6 h-6">
+            </div>
+            <div class="contact-tooltip absolute left-14 top-1/2 -translate-y-1/2 bg-white dark:bg-gray-800 rounded-lg shadow-xl p-3 opacity-0 pointer-events-none whitespace-nowrap border border-gray-200 dark:border-gray-600 z-10">
+                <a href="tel:+523329057215" target="_blank" class="text-sm text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400">+52 333 905 7215</a>
             </div>
         </div>
-        <div class="globo-contacto whatsapp">
-            <img src="img/WhatsApp.svg.webp" alt="WhatsApp" width="32">
-            <div class="info-contacto">
-                <span>WhatsApp</span>
-                <a href="https://wa.me/qr/UXKOCPRLXDN2J1" target="_blank">
-                    <img src="img/link-outline.svg" width="20px">
-                </a>
-                <button onclick="copyToClipboard('https://wa.me/qr/UXKOCPRLXDN2J1')">
-                    <img src="img/copy-outline.svg" width="20px">
-                </button>
+        
+        <div class="contact-group relative">
+            <a href="https://wa.me/qr/UXKOCPRLXDN2J1" target="_blank" class="w-12 h-12 bg-white dark:bg-gray-800 rounded-full shadow-lg flex items-center justify-center hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-600">
+                <img src="img/WhatsApp.svg.webp" alt="WhatsApp" class="w-6 h-6">
+            </a>
+            <div class="contact-tooltip absolute left-14 top-1/2 -translate-y-1/2 bg-white dark:bg-gray-800 rounded-lg shadow-xl p-3 opacity-0 pointer-events-none whitespace-nowrap border border-gray-200 dark:border-gray-600 z-10">
+                <a href="https://wa.me/qr/UXKOCPRLXDN2J1" target="_blank" class="text-sm text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400">WhatsApp</a>
             </div>
         </div>
-        <div class="globo-contacto linkedin">
-            <img src="img/linkedin.webp" alt="LinkedIn" width="32">
-            <div class="info-contacto">
-                <span>LinkedIn</span>
-                <a href="https://www.linkedin.com/in/julio-cesar-campos-aguilar-b3a53b278" target="_blank">
-                    <img src="img/link-outline.svg" width="20px">
-                </a>
-                <button onclick="copyToClipboard('https://www.linkedin.com/in/julio-cesar-campos-aguilar-b3a53b278')">
-                    <img src="img/copy-outline.svg" width="20px">
-                </button>
+        
+        <div class="contact-group relative">
+            <a href="https://www.linkedin.com/in/julio-cesar-campos-aguilar-b3a53b278" target="_blank" class="w-12 h-12 bg-white dark:bg-gray-800 rounded-full shadow-lg flex items-center justify-center hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-600">
+                <img src="img/linkedin.webp" alt="LinkedIn" class="w-6 h-6">
+            </a>
+            <div class="contact-tooltip absolute left-14 top-1/2 -translate-y-1/2 bg-white dark:bg-gray-800 rounded-lg shadow-xl p-3 opacity-0 pointer-events-none whitespace-nowrap border border-gray-200 dark:border-gray-600 z-10">
+                <a href="https://www.linkedin.com/in/julio-cesar-campos-aguilar-b3a53b278" target="_blank" class="text-sm text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">LinkedIn</a>
             </div>
         </div>
-        <div class="globo-contacto github">
-            <img src="img/gitImg.png" alt="GitHub" width="32">
-            <div class="info-contacto">
-                <span>GitHub</span>
-                <a href="https://github.com/JulioCampos-Z5" target="_blank">
-                    <img src="img/link-outline.svg" width="20px">
-                </a>
-                <button onclick="copyToClipboard('https://github.com/JulioCampos-Z5')">
-                    <img src="img/copy-outline.svg" width="20px">
-                </button>
+        
+        <div class="contact-group relative">
+            <div class="w-12 h-12 bg-white dark:bg-gray-800 rounded-full shadow-lg flex items-center justify-center hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-600">
+                <img src="img/gitImg.png" alt="GitHub" class="w-6 h-6">
             </div>
+            <div class="contact-tooltip absolute left-14 top-1/2 -translate-y-1/2 bg-white dark:bg-gray-800 rounded-lg shadow-xl p-3 opacity-0 pointer-events-none whitespace-nowrap border border-gray-200 dark:border-gray-600 z-10">
+                <a href="https://github.com/JulioCampos-Z5" target="_blank" class="text-sm text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">GitHub</a>
+            </div>
+        </div>
         </div>
     </aside>
 
-    <section class="container">
-        <img class="Perfil" src="img/Pro.jpg" alt="Perfil">
+    <main class="max-w-6xl mx-auto px-4 py-8">
+        <!-- Imagen de perfil -->
+        <div class="mb-12">
+            <img class="w-full h-auto rounded-2xl shadow-lg" 
+                 src="img/Pro.jpg" alt="Perfil">
+        </div>
 
-        <h2 class="subtitulo">Descripción</h2>
-        <article class="des"><!--Descripción-->
-            <p>
-                Soy un ingeniero informático apasionado por la tecnología, con experiencia en desarrollo de aplicaciones
-                de escritorio y web, consultoría tecnológica para pymes, y liderazgo de equipos técnicos. Me motiva
-                aportar soluciones innovadoras y seguir aprendiendo en entornos dinámicos que impulsen mi crecimiento
-                profesional.
-            </p>
-        </article>
+        <!-- Descripción minimalista -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold mb-6 text-left text-gray-800 dark:text-gray-100">Descripción</h2>
+            <div>
+                <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed text-left">
+                    Soy un ingeniero informático apasionado por la tecnología, con experiencia en desarrollo de aplicaciones
+                    de escritorio y web, consultoría tecnológica para pymes, y liderazgo de equipos técnicos. Me motiva
+                    aportar soluciones innovadoras y seguir aprendiendo en entornos dinámicos que impulsen mi crecimiento
+                    profesional.
+                </p>
+            </div>
+        </section>
 
-        <h2 class="subtitulo2">Experiencia</h2>
-        <article class="exp"><!--Experiencia-->
-            <div class="Tarjeta">
-                <h3>Freelancer: Desarrollador Web</h3>
-                <p>
-                <ul>
-                    <li>Desarrollo de aplicaciones de escritorio y web, y también he realizado consultoría a pymes.</li>
-                </ul>
-                </p>
-                <p class="textoDerecho">2023 - Actualmente</p>
+        <!-- Experiencia con desplazamiento -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold mb-8 text-left text-gray-800 dark:text-gray-100">Experiencia</h2>
+            <div class="relative">
+                <!-- Botones de navegación -->
+                <button id="prevExp" class="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white dark:bg-gray-800 p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-600">
+                    <svg class="w-5 h-5 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                </button>
+                <button id="nextExp" class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white dark:bg-gray-800 p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-600">
+                    <svg class="w-5 h-5 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </button>
+                
+                <!-- Contenedor con navegación diferente para móvil y desktop -->
+                <div id="expContainer" class="mx-0 sm:mx-12 px-4 sm:px-0">
+                    <!-- Móvil: Una tarjeta por vez sin transición -->
+                    <div class="block sm:hidden">
+                        <div id="mobileCard0" class="mobile-card w-full h-96 bg-white dark:bg-gray-800 rounded-xl p-4 shadow-lg border border-gray-200 dark:border-gray-700 flex flex-col">
+                            <h3 class="text-lg font-semibold mb-4 text-gray-800 dark:text-gray-100">Freelancer: Desarrollador Web</h3>
+                            <ul class="text-gray-600 dark:text-gray-400 mb-6 space-y-3 text-sm flex-grow">
+                                <li class="flex items-start">
+                                    <span class="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                                    Desarrollo de aplicaciones de escritorio y web, y también he realizado consultoría a pymes.
+                                </li>
+                            </ul>
+                            <p class="text-right text-xs text-gray-500 dark:text-gray-400 font-medium mt-auto">2023 - Actualmente</p>
+                        </div>
+                        
+                        <div id="mobileCard1" class="mobile-card w-full h-96 bg-white dark:bg-gray-800 rounded-xl p-4 shadow-lg border border-gray-200 dark:border-gray-700 flex flex-col hidden">
+                            <h3 class="text-lg font-semibold mb-4 text-gray-800 dark:text-gray-100">Grupo Carcam: Jefe de sistemas</h3>
+                            <ul class="text-gray-600 dark:text-gray-400 mb-6 space-y-3 text-sm flex-grow">
+                                <li class="flex items-start">
+                                    <span class="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                                    Dirigir al personal de ingenieros en sistemas y tener contacto con los clientes.
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                                    Instalación de domótica, cámaras de seguridad, paneles de pantallas de gran formato.
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                                    Armado de carritos de golf.
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                                    Capacitar al personal.
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                                    Atención al cliente.
+                                </li>
+                            </ul>
+                            <p class="text-right text-xs text-gray-500 dark:text-gray-400 font-medium mt-auto">5/2024 - 01/2025</p>
+                        </div>
+                        
+                        <div id="mobileCard2" class="mobile-card w-full h-96 bg-white dark:bg-gray-800 rounded-xl p-4 shadow-lg border border-gray-200 dark:border-gray-700 flex flex-col hidden">
+                            <h3 class="text-lg font-semibold mb-4 text-gray-800 dark:text-gray-100">UDG CUCEI: Trabajo de laboratorio</h3>
+                            <ul class="text-gray-600 dark:text-gray-400 mb-6 space-y-3 text-sm flex-grow">
+                                <li class="flex items-start">
+                                    <span class="w-2 h-2 bg-purple-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                                    Trabajo de investigación y desarrollo en laboratorio universitario.
+                                </li>
+                            </ul>
+                            <p class="text-right text-xs text-gray-500 dark:text-gray-400 font-medium mt-auto">10/2024 - Actualmente</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Desktop: Slider original -->
+                    <div class="hidden sm:block overflow-hidden">
+                        <div id="expSlider" class="flex gap-6 transition-transform duration-500 ease-in-out">
+                            <div class="flex-shrink-0 w-80 h-96 bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 flex flex-col">
+                                <h3 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-100">Freelancer: Desarrollador Web</h3>
+                                <ul class="text-gray-600 dark:text-gray-400 mb-6 space-y-3 text-base flex-grow">
+                                    <li class="flex items-start">
+                                        <span class="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                                        Desarrollo de aplicaciones de escritorio y web, y también he realizado consultoría a pymes.
+                                    </li>
+                                </ul>
+                                <p class="text-right text-sm text-gray-500 dark:text-gray-400 font-medium mt-auto">2023 - Actualmente</p>
+                            </div>
+                            
+                            <div class="flex-shrink-0 w-80 h-96 bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 flex flex-col">
+                                <h3 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-100">Grupo Carcam: Jefe de sistemas</h3>
+                                <ul class="text-gray-600 dark:text-gray-400 mb-6 space-y-3 text-base flex-grow">
+                                    <li class="flex items-start">
+                                        <span class="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                                        Dirigir al personal de ingenieros en sistemas y tener contacto con los clientes.
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                                        Instalación de domótica, cámaras de seguridad, paneles de pantallas de gran formato.
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                                        Armado de carritos de golf.
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                                        Capacitar al personal.
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                                        Atención al cliente.
+                                    </li>
+                                </ul>
+                                <p class="text-right text-sm text-gray-500 dark:text-gray-400 font-medium mt-auto">5/2024 - 01/2025</p>
+                            </div>
+                            
+                            <div class="flex-shrink-0 w-80 h-96 bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 flex flex-col">
+                                <h3 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-100">UDG CUCEI: Trabajo de laboratorio</h3>
+                                <ul class="text-gray-600 dark:text-gray-400 mb-6 space-y-3 text-base flex-grow">
+                                    <li class="flex items-start">
+                                        <span class="w-2 h-2 bg-purple-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                                        Trabajo de investigación y desarrollo en laboratorio universitario.
+                                    </li>
+                                </ul>
+                                <p class="text-right text-sm text-gray-500 dark:text-gray-400 font-medium mt-auto">10/2024 - Actualmente</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="Tarjeta">
-                <h3>Grupo Carcam: Jefe de sistemas</h3>
-                <p>
-                <ul>
-                    <li>Dirigir al personal de ingenieros en sistemas y tener contacto con los clientes.</li>
-                    <li>Instalación de domótica, cámaras de seguridad, paneles de pantallas de gran formato.</li>
-                    <li>Armado de carritos de golf.</li>
-                    <li>Capacitar al personal.</li>
-                    <li>Atención al cliente.</li>
-                </ul>
-                </p>
-                <p class="textoDerecho">5/2024 - 01/2025</p>
-            </div>
-            <div class="Tarjeta">
-                <h3>UDG CUCEI: Trabajo de laboratorio</h3>
-                <p>
-                <ul>
-                    <li></li>
-                </ul>
-                </p>
-                <p class="textoDerecho">10/2024 - Actualmente</p>
-            </div>
-        </article>
+        </section>
         <!--Proyectos
             <article class="proyectos">
                 <h2 class="T_P">Proyectos</h2>
@@ -144,53 +267,141 @@
                 </div>
             </article> -->
 
-        <article class="habilidades"><!--Habilidades-->
-            <h2 class="subtitulo3">Habilidades</h2>
-            <div class="Globos">
-                <p>
-                <ul>
-                    <li>Desarrollo Web y Escritorio.</li>
-                    <li>Estructura de Datos (POO).</li>
-                    <li>Bases de Datos (SQL).</li>
-                    <li>Ciencia de datos.</li>
-                    <li>Liderazgo.</li>
-                    <li>Maquetación y Documentación.</li>
-                </ul>
-                </p>
+        <!-- Habilidades como globitos de colores -->
+        <section class="mb-16 animate-fadeInUp">
+            <h2 class="text-3xl font-bold mb-8 text-left text-gray-800 dark:text-gray-100">Habilidades</h2>
+            <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
+                <div class="flex flex-col sm:flex-row sm:flex-wrap sm:justify-start gap-3 sm:gap-4 items-start">
+                    <span class="skill-bubble inline-block px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-full font-medium shadow-lg text-sm sm:text-base whitespace-nowrap">
+                        Desarrollo Web y Escritorio
+                    </span>
+                    <span class="skill-bubble inline-block px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full font-medium shadow-lg text-sm sm:text-base whitespace-nowrap">
+                        Estructura de Datos (POO)
+                    </span>
+                    <span class="skill-bubble inline-block px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-full font-medium shadow-lg text-sm sm:text-base whitespace-nowrap">
+                        Bases de Datos (SQL)
+                    </span>
+                    <span class="skill-bubble inline-block px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-full font-medium shadow-lg text-sm sm:text-base whitespace-nowrap">
+                        Ciencia de datos
+                    </span>
+                    <span class="skill-bubble inline-block px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-emerald-500 to-teal-600 text-white rounded-full font-medium shadow-lg text-sm sm:text-base whitespace-nowrap">
+                        API (REST)
+                    </span>
+                    <span class="skill-bubble inline-block px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-slate-500 to-gray-600 text-white rounded-full font-medium shadow-lg text-sm sm:text-base whitespace-nowrap">
+                        Servidores (Ubuntu, Debian)
+                    </span>
+                    <span class="skill-bubble inline-block px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-full font-medium shadow-lg text-sm sm:text-base whitespace-nowrap">
+                        Maquetación y Documentación
+                    </span>
+                    <span class="skill-bubble inline-block px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-full font-medium shadow-lg text-sm sm:text-base whitespace-nowrap">
+                        Liderazgo
+                    </span>
+                    <span class="skill-bubble inline-block px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-fuchsia-500 to-pink-600 text-white rounded-full font-medium shadow-lg text-sm sm:text-base whitespace-nowrap">
+                        CI/CD
+                    </span>
+                </div>
             </div>
-        </article>
+        </section>
 
-        <article class="conocimientos"><!--Conocimientos-->
-            <h2 class="subtitulo4">Tecnologías y Herramientas</h2>
-            <div class="Iconos">
-                <h3 class="textoIzquierdo">Lenguajes</h3>
-                <img src="img/C++.png" width="80">
-                <img src="img/Csharp.png" width="80">
-                <img src="img/Go.png" width="90">
-                <img src="img/PHP.png" width="90">
-                <img src="img/PYTHON.png" width="88">
-                <img src="img/node.png" width="95">
-                <img src="img/javascript.png" width="79">
-                <img src="img/HTML5.png" width="81">
-                <img src="img/CSS3.png" width="77">
+        <!-- Tecnologías organizadas horizontalmente -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold mb-8 text-left text-gray-800 dark:text-gray-100">Tecnologías y Herramientas</h2>
+            
+            <!-- Layout horizontal: Lenguajes | Frameworks | SQL -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto px-4">
+                
+                <!-- Lenguajes -->
+                <div class="flex flex-col">
+                    <h3 class="text-xl font-semibold mb-4 text-center text-gray-700 dark:text-gray-300">Lenguajes</h3>
+                    <div class="grid grid-cols-3 gap-3">
+                        <div class="tech-card flex flex-col items-center p-3 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
+                            <img src="img/C++.png" alt="C++" class="w-12 h-12 object-contain mb-1">
+                            <span class="text-xs font-medium text-gray-600 dark:text-gray-400">C++</span>
+                        </div>
+                        <div class="tech-card flex flex-col items-center p-3 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
+                            <img src="img/Csharp.png" alt="C#" class="w-12 h-12 object-contain mb-1">
+                            <span class="text-xs font-medium text-gray-600 dark:text-gray-400">C#</span>
+                        </div>
+                        <div class="tech-card flex flex-col items-center p-3 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
+                            <img src="img/Go.png" alt="Go" class="w-12 h-12 object-contain mb-1">
+                            <span class="text-xs font-medium text-gray-600 dark:text-gray-400">Go</span>
+                        </div>
+                        <div class="tech-card flex flex-col items-center p-3 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
+                            <img src="img/PHP.png" alt="PHP" class="w-12 h-12 object-contain mb-1">
+                            <span class="text-xs font-medium text-gray-600 dark:text-gray-400">PHP</span>
+                        </div>
+                        <div class="tech-card flex flex-col items-center p-3 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
+                            <img src="img/PYTHON.png" alt="Python" class="w-12 h-12 object-contain mb-1">
+                            <span class="text-xs font-medium text-gray-600 dark:text-gray-400">Python</span>
+                        </div>
+                        <div class="tech-card flex flex-col items-center p-3 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
+                            <img src="img/node.png" alt="Node.js" class="w-12 h-12 object-contain mb-1">
+                            <span class="text-xs font-medium text-gray-600 dark:text-gray-400">Node.js</span>
+                        </div>
+                        <div class="tech-card flex flex-col items-center p-3 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
+                            <img src="img/javascript.png" alt="JavaScript" class="w-12 h-12 object-contain mb-1">
+                            <span class="text-xs font-medium text-gray-600 dark:text-gray-400">JavaScript</span>
+                        </div>
+                        <div class="tech-card flex flex-col items-center p-3 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
+                            <img src="img/HTML5.png" alt="HTML5" class="w-12 h-12 object-contain mb-1">
+                            <span class="text-xs font-medium text-gray-600 dark:text-gray-400">HTML5</span>
+                        </div>
+                        <div class="tech-card flex flex-col items-center p-3 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
+                            <img src="img/CSS3.png" alt="CSS3" class="w-12 h-12 object-contain mb-1">
+                            <span class="text-xs font-medium text-gray-600 dark:text-gray-400">CSS3</span>
+                        </div>
+                    </div>
+                </div>
 
-                <h3 class="textoIzquierdo">Frameworks</h3>
-                <img src="img/Laravel.svg.png" width="86">
-                <img src="img/tailwind.png" width="86">
-                <img src="img/Vue.png" width="86">
+                <!-- Frameworks -->
+                <div class="flex flex-col">
+                    <h3 class="text-xl font-semibold mb-4 text-center text-gray-700 dark:text-gray-300">Frameworks</h3>
+                    <div class="grid grid-cols-3 gap-3">
+                        <div class="tech-card flex flex-col items-center p-3 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
+                            <img src="img/Laravel.svg.png" alt="Laravel" class="w-12 h-12 object-contain mb-1">
+                            <span class="text-xs font-medium text-gray-600 dark:text-gray-400">Laravel</span>
+                        </div>
+                        <div class="tech-card flex flex-col items-center p-3 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
+                            <img src="img/tailwind.png" alt="Tailwind CSS" class="w-12 h-12 object-contain mb-1">
+                            <span class="text-xs font-medium text-gray-600 dark:text-gray-400">Tailwind</span>
+                        </div>
+                        <div class="tech-card flex flex-col items-center p-3 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
+                            <img src="img/Vue.png" alt="Vue.js" class="w-12 h-12 object-contain mb-1">
+                            <span class="text-xs font-medium text-gray-600 dark:text-gray-400">Vue.js</span>
+                        </div>
+                    </div>
+                </div>
 
-                <h3 class="textoIzquierdo">SGBD (SQL)</h3>
-                <img src="img/MySQL.png" width="88">
-                <img src="img/MariaDB.png" width="97">
+                <!-- SGBD (SQL) -->
+                <div class="flex flex-col">
+                    <h3 class="text-xl font-semibold mb-4 text-center text-gray-700 dark:text-gray-300">SGBD (SQL)</h3>
+                    <div class="grid grid-cols-2 gap-3 justify-center">
+                        <div class="tech-card flex flex-col items-center p-3 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
+                            <img src="img/MySQL.png" alt="MySQL" class="w-12 h-12 object-contain mb-1">
+                            <span class="text-xs font-medium text-gray-600 dark:text-gray-400">MySQL</span>
+                        </div>
+                        <div class="tech-card flex flex-col items-center p-3 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
+                            <img src="img/MariaDB.png" alt="MariaDB" class="w-12 h-12 object-contain mb-1">
+                            <span class="text-xs font-medium text-gray-600 dark:text-gray-400">MariaDB</span>
+                        </div>
+                    </div>
+                </div>
+                
             </div>
-        </article>
+        </section>
 
 
-        <footer><!-- --></footer>
+    </main>
 
-        <script src="index.js"></script>
-        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <footer class="bg-gray-50 dark:bg-gray-800 py-8 mt-16 border-t border-gray-200 dark:border-gray-700">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p class="text-gray-600 dark:text-gray-400">© 2025 Julio Cesar Campos Aguilar. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="index.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 
 </html>

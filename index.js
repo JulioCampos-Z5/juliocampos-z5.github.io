@@ -1,111 +1,258 @@
-let modoOscuro = true; // Variable para controlar el modo oscuro
-let botonModo = document.getElementById("modo"); // Botón para cambiar el modo
-botonModo.addEventListener("click", cambiarModo); // Evento para cambiar el modo al hacer clic
+// Variables para el modo oscuro con Tailwind CSS
+let isDarkMode = false;
+const modoButton = document.getElementById('modo');
 
-function cambiarModo() {
-    let fondo = document.querySelector("*");
-    let btnCont = document.querySelectorAll(".btnCont");
-    let btn = document.querySelector("#modo");
-    let header = document.querySelector("header");
-    let encabezado = document.querySelector(".encabezado");
-    let perfil = document.querySelector(".Perfil");
-    let descripcion = document.querySelector(".des");
-    let tarjeta = document.querySelectorAll(".Tarjeta");
-    let globos = document.querySelector(".Globos");
-    let iconos = document.querySelector(".Iconos");
-
-    if (modoOscuro) {
-        fondo.style.backgroundColor = "#17202a";
-        fondo.style.color = "white";
-        btnCont.forEach((btnCont) => {
-            btnCont.style.backgroundColor = "#1c2833";
-        });
-        header.style.backgroundColor = "#17202a";
-        encabezado.style.backgroundColor = "#17202a";
-        perfil.style.boxShadow = "5px 5px 5px black";
-        descripcion.style.backgroundColor = "#1c2833";
-        descripcion.style.boxShadow = "5px 5px 5px black";
-
-        tarjeta.forEach((tarjeta) => {
-            tarjeta.style.backgroundColor = "#1c2833";
-            tarjeta.style.boxShadow = "5px 5px 5px black";
-        });
-
-        // header.style.backgroundColor = "#17202a";
-
-        globos.style.backgroundColor = "#1c2833";
-        globos.style.boxShadow = "5px 5px 5px black";
-
-        iconos.style.backgroundColor = "#1c2833";
-        iconos.style.boxShadow = "5px 5px 5px black";
-
-        botonModo.textContent = "☀️"; // Cambia el texto del botón
-        botonModo.addEventListener("mouseenter", () => {
-            botonModo.style.backgroundColor = "#fff"; // Cambia el cursor al pasar el mouse
-        });
-        botonModo.addEventListener("mouseleave", () => {
-            botonModo.style.backgroundColor = "#1c2833"; // Cambia el cursor al salir el mouse
-        });
+// Función para cambiar entre modo claro y oscuro
+function toggleDarkMode() {
+    const html = document.documentElement;
+    
+    if (isDarkMode) {
+        html.classList.remove('dark');
+        modoButton.textContent = '🌑';
+        isDarkMode = false;
+        localStorage.setItem('darkMode', 'false');
     } else {
-        fondo.style.backgroundColor = "";
-        fondo.style.color = "";
-        btnCont.forEach((btnCont) => {
-            btnCont.style.backgroundColor = "";
-        });
-        header.style.backgroundColor = "";
-        encabezado.style.backgroundColor = "";
-        perfil.style.boxShadow = "";
-        descripcion.style.backgroundColor = "";
-        descripcion.style.boxShadow = "";
-
-        tarjeta.forEach((tarjeta) => {
-            tarjeta.style.backgroundColor = "";
-            tarjeta.style.boxShadow = "";
-        });
-
-        globos.style.backgroundColor = "";
-        globos.style.boxShadow = "";
-
-        iconos.style.backgroundColor = "";
-        iconos.style.boxShadow = "";
-
-        botonModo.textContent = "🌑"; // Cambia el texto del botón
-        botonModo.style.backgroundColor = "#f0f0f0"; // Cambia el color de fondo del botón
-        botonModo.addEventListener("mouseenter", () => {
-            botonModo.style.backgroundColor = "#1c2833"; // Cambia el cursor al pasar el mouse
-
-        });
-        botonModo.addEventListener("mouseleave", () => {
-            botonModo.style.backgroundColor = "#f0f0f0";
-        });
+        html.classList.add('dark');
+        modoButton.textContent = '☀️';
+        isDarkMode = true;
+        localStorage.setItem('darkMode', 'true');
     }
-
-    modoOscuro = !modoOscuro; // Alterna el estado del modo oscuro
 }
 
-// Detectar preferencia de modo oscuro del sistema
-if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    modoOscuro = true;
-} else {
-    modoOscuro = false;
+// Detectar preferencia guardada o del sistema
+function initializeDarkMode() {
+    const savedMode = localStorage.getItem('darkMode');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    if (savedMode === 'true' || (savedMode === null && prefersDark)) {
+        document.documentElement.classList.add('dark');
+        modoButton.textContent = '☀️';
+        isDarkMode = true;
+    } else {
+        document.documentElement.classList.remove('dark');
+        modoButton.textContent = '🌑';
+        isDarkMode = false;
+    }
 }
 
-// Aplicar el modo correspondiente al cargar la página
-window.addEventListener('DOMContentLoaded', () => {
-    cambiarModo(); // Aplica el modo según la preferencia detectada
-});
+// Slider de experiencia - Sistemas separados para móvil y desktop
+let currentSlide = 0;
+let currentMobileCard = 0;
+const totalSlides = 3; // Número total de tarjetas de experiencia
 
-document.addEventListener("scroll", () => {
-    const header = document.querySelector(".encabezado");
-    if (window.scrollY > 50) {
-        header.classList.add("scroll");
-    } else {
-        header.classList.remove("scroll");
+// Sistema para móvil - mostrar/ocultar tarjetas
+function showMobileCard(cardIndex) {
+    // Ocultar todas las tarjetas móviles
+    for (let i = 0; i < totalSlides; i++) {
+        const card = document.getElementById(`mobileCard${i}`);
+        if (card) {
+            card.classList.add('hidden');
+        }
     }
-});
+    
+    // Mostrar la tarjeta seleccionada
+    const activeCard = document.getElementById(`mobileCard${cardIndex}`);
+    if (activeCard) {
+        activeCard.classList.remove('hidden');
+    }
+    
+    currentMobileCard = cardIndex;
+    updateMobileButtons();
+}
 
-function copyToClipboard(text) {
-    navigator.clipboard.writeText(text).then(() => {
-        alert('Texto copiado al portapapeles: ' + text);
+function updateMobileButtons() {
+    const prevBtn = document.getElementById('prevExp');
+    const nextBtn = document.getElementById('nextExp');
+    
+    if (window.innerWidth < 640) { // Móvil
+        prevBtn.style.opacity = currentMobileCard === 0 ? '0.5' : '1';
+        prevBtn.style.pointerEvents = currentMobileCard === 0 ? 'none' : 'auto';
+        
+        nextBtn.style.opacity = currentMobileCard >= totalSlides - 1 ? '0.5' : '1';
+        nextBtn.style.pointerEvents = currentMobileCard >= totalSlides - 1 ? 'none' : 'auto';
+    }
+}
+
+// Sistema para desktop - slider original
+function getSlideWidth() {
+    return 320 + 24; // w-80 = 320px + gap
+}
+
+function getVisibleSlides() {
+    const container = document.getElementById('expContainer');
+    const containerWidth = container.clientWidth - 96;
+    const slideWidth = getSlideWidth();
+    return Math.floor(containerWidth / slideWidth);
+}
+
+function updateDesktopSlider() {
+    const slider = document.getElementById('expSlider');
+    if (!slider) return;
+    
+    const slideWidth = getSlideWidth();
+    const offset = -currentSlide * slideWidth;
+    slider.style.transform = `translateX(${offset}px)`;
+    
+    const prevBtn = document.getElementById('prevExp');
+    const nextBtn = document.getElementById('nextExp');
+    const visibleSlides = getVisibleSlides();
+    const maxSlide = Math.max(0, totalSlides - visibleSlides);
+    
+    prevBtn.style.opacity = currentSlide === 0 ? '0.5' : '1';
+    prevBtn.style.pointerEvents = currentSlide === 0 ? 'none' : 'auto';
+    
+    nextBtn.style.opacity = currentSlide >= maxSlide ? '0.5' : '1';
+    nextBtn.style.pointerEvents = currentSlide >= maxSlide ? 'none' : 'auto';
+    
+    const hideButtons = totalSlides <= visibleSlides;
+    prevBtn.style.display = hideButtons ? 'none' : 'flex';
+    nextBtn.style.display = hideButtons ? 'none' : 'flex';
+}
+
+function nextSlide() {
+    if (window.innerWidth < 640) { // Móvil
+        if (currentMobileCard < totalSlides - 1) {
+            showMobileCard(currentMobileCard + 1);
+        }
+    } else { // Desktop
+        const visibleSlides = getVisibleSlides();
+        const maxSlide = Math.max(0, totalSlides - visibleSlides);
+        if (currentSlide < maxSlide) {
+            currentSlide++;
+            updateDesktopSlider();
+        }
+    }
+}
+
+function prevSlide() {
+    if (window.innerWidth < 640) { // Móvil
+        if (currentMobileCard > 0) {
+            showMobileCard(currentMobileCard - 1);
+        }
+    } else { // Desktop
+        if (currentSlide > 0) {
+            currentSlide--;
+            updateDesktopSlider();
+        }
+    }
+}
+
+function updateSlider() {
+    if (window.innerWidth < 640) {
+        updateMobileButtons();
+    } else {
+        updateDesktopSlider();
+    }
+}
+
+// Funciones de contacto con pin/click
+function toggleContactTooltip(event, contactGroup) {
+    event.preventDefault();
+    event.stopPropagation();
+    
+    // Cerrar otros tooltips abiertos
+    document.querySelectorAll('.contact-group.pinned').forEach(group => {
+        if (group !== contactGroup) {
+            group.classList.remove('pinned');
+        }
+    });
+    
+    // Toggle del tooltip actual
+    contactGroup.classList.toggle('pinned');
+}
+
+function setupContactListeners() {
+    document.querySelectorAll('.contact-group').forEach(group => {
+        const image = group.querySelector('img').parentElement;
+        const tooltip = group.querySelector('.contact-tooltip');
+        const link = group.querySelector('.contact-tooltip a');
+        
+        // Click en la imagen para fijar/desfijar tooltip
+        image.addEventListener('click', (e) => {
+            toggleContactTooltip(e, group);
+        });
+        
+        // Click en el enlace cierra el tooltip y ejecuta la acción
+        link.addEventListener('click', () => {
+            group.classList.remove('pinned');
+        });
+    });
+    
+    // Cerrar tooltips al hacer click fuera
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.contact-group')) {
+            document.querySelectorAll('.contact-group.pinned').forEach(group => {
+                group.classList.remove('pinned');
+            });
+        }
     });
 }
+
+// Event listeners
+document.addEventListener('DOMContentLoaded', () => {
+    initializeDarkMode();
+    
+    // Inicializar sistema de experiencia según dispositivo
+    if (window.innerWidth < 640) {
+        showMobileCard(0);
+    } else {
+        updateDesktopSlider();
+    }
+    
+    // Inicializar contactos con click
+    setupContactListeners();
+    
+    // Botón de modo oscuro
+    modoButton.addEventListener('click', toggleDarkMode);
+    
+    // Botones del slider de experiencia
+    document.getElementById('prevExp').addEventListener('click', prevSlide);
+    document.getElementById('nextExp').addEventListener('click', nextSlide);
+    
+    // Responsive - cambiar sistema según tamaño de pantalla
+    function handleResize() {
+        if (window.innerWidth < 640) {
+            // Cambiar a sistema móvil
+            showMobileCard(currentMobileCard);
+        } else {
+            // Cambiar a sistema desktop
+            const visibleSlides = getVisibleSlides();
+            const maxSlide = Math.max(0, totalSlides - visibleSlides);
+            if (currentSlide > maxSlide) {
+                currentSlide = maxSlide;
+            }
+            updateDesktopSlider();
+        }
+    }
+    
+    window.addEventListener('resize', handleResize);
+    handleResize();
+    
+    // Soporte para touch/swipe en móviles
+    let startX = 0;
+    let endX = 0;
+    
+    const slider = document.getElementById('expContainer');
+    
+    slider.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+    });
+    
+    slider.addEventListener('touchend', (e) => {
+        endX = e.changedTouches[0].clientX;
+        handleSwipe();
+    });
+    
+    function handleSwipe() {
+        const diff = startX - endX;
+        const threshold = 50;
+        
+        if (Math.abs(diff) > threshold) {
+            if (diff > 0) {
+                nextSlide();
+            } else {
+                prevSlide();
+            }
+        }
+    }
+});
