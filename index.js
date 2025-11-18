@@ -38,7 +38,7 @@ function initializeDarkMode() {
 // Slider de experiencia - Sistemas separados para móvil y desktop
 let currentSlide = 0;
 let currentMobileCard = 0;
-const totalSlides = 3; // Número total de tarjetas de experiencia
+const totalSlides = 5; // Número total de tarjetas de experiencia
 
 // Sistema para móvil - mostrar/ocultar tarjetas
 function showMobileCard(cardIndex) {
