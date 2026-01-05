@@ -1,6 +1,9 @@
 // Variables para el modo oscuro con Tailwind CSS
 let isDarkMode = false;
 const modoButton = document.getElementById('modo');
+const mobileTrack = document.getElementById('mobileTrack');
+const mobileCards = mobileTrack ? Array.from(mobileTrack.querySelectorAll('.mobile-card')) : [];
+const desktopSlides = document.querySelectorAll('#expSlider > div').length;
 
 // Función para cambiar entre modo claro y oscuro
 function toggleDarkMode() {
@@ -37,40 +40,47 @@ function initializeDarkMode() {
 
 // Slider de experiencia - Sistemas separados para móvil y desktop
 let currentSlide = 0;
-let currentMobileCard = 0;
-const totalSlides = 5; // Número total de tarjetas de experiencia
+let currentMobileIndex = 0;
+const totalSlides = Math.max(mobileCards.length, desktopSlides);
 
-// Sistema para móvil - mostrar/ocultar tarjetas
-function showMobileCard(cardIndex) {
-    // Ocultar todas las tarjetas móviles
-    for (let i = 0; i < totalSlides; i++) {
-        const card = document.getElementById(`mobileCard${i}`);
-        if (card) {
-            card.classList.add('hidden');
-        }
-    }
-    
-    // Mostrar la tarjeta seleccionada
-    const activeCard = document.getElementById(`mobileCard${cardIndex}`);
-    if (activeCard) {
-        activeCard.classList.remove('hidden');
-    }
-    
-    currentMobileCard = cardIndex;
+// Sistema para móvil - desplazamiento natural
+function scrollMobileTo(targetIndex) {
+    if (!mobileTrack || mobileCards.length === 0) return;
+    const clampedIndex = Math.min(Math.max(targetIndex, 0), mobileCards.length - 1);
+    const targetCard = mobileCards[clampedIndex];
+    mobileTrack.scrollTo({ left: targetCard.offsetLeft, behavior: 'smooth' });
+    currentMobileIndex = clampedIndex;
     updateMobileButtons();
 }
 
 function updateMobileButtons() {
     const prevBtn = document.getElementById('prevExp');
     const nextBtn = document.getElementById('nextExp');
-    
-    if (window.innerWidth < 640) { // Móvil
-        prevBtn.style.opacity = currentMobileCard === 0 ? '0.5' : '1';
-        prevBtn.style.pointerEvents = currentMobileCard === 0 ? 'none' : 'auto';
-        
-        nextBtn.style.opacity = currentMobileCard >= totalSlides - 1 ? '0.5' : '1';
-        nextBtn.style.pointerEvents = currentMobileCard >= totalSlides - 1 ? 'none' : 'auto';
-    }
+    if (!prevBtn || !nextBtn || mobileCards.length === 0 || window.innerWidth >= 640) return;
+
+    prevBtn.style.opacity = currentMobileIndex === 0 ? '0.5' : '1';
+    prevBtn.style.pointerEvents = currentMobileIndex === 0 ? 'none' : 'auto';
+
+    nextBtn.style.opacity = currentMobileIndex >= mobileCards.length - 1 ? '0.5' : '1';
+    nextBtn.style.pointerEvents = currentMobileIndex >= mobileCards.length - 1 ? 'none' : 'auto';
+}
+
+function syncMobileIndexFromScroll() {
+    if (!mobileTrack || mobileCards.length === 0) return;
+    const scrollLeft = mobileTrack.scrollLeft;
+    let closestIndex = 0;
+    let smallestDistance = Number.MAX_VALUE;
+
+    mobileCards.forEach((card, index) => {
+        const distance = Math.abs(card.offsetLeft - scrollLeft);
+        if (distance < smallestDistance) {
+            smallestDistance = distance;
+            closestIndex = index;
+        }
+    });
+
+    currentMobileIndex = closestIndex;
+    updateMobileButtons();
 }
 
 // Sistema para desktop - slider original
@@ -111,9 +121,7 @@ function updateDesktopSlider() {
 
 function nextSlide() {
     if (window.innerWidth < 640) { // Móvil
-        if (currentMobileCard < totalSlides - 1) {
-            showMobileCard(currentMobileCard + 1);
-        }
+        scrollMobileTo(currentMobileIndex + 1);
     } else { // Desktop
         const visibleSlides = getVisibleSlides();
         const maxSlide = Math.max(0, totalSlides - visibleSlides);
@@ -126,9 +134,7 @@ function nextSlide() {
 
 function prevSlide() {
     if (window.innerWidth < 640) { // Móvil
-        if (currentMobileCard > 0) {
-            showMobileCard(currentMobileCard - 1);
-        }
+        scrollMobileTo(currentMobileIndex - 1);
     } else { // Desktop
         if (currentSlide > 0) {
             currentSlide--;
@@ -194,7 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Inicializar sistema de experiencia según dispositivo
     if (window.innerWidth < 640) {
-        showMobileCard(0);
+        updateMobileButtons();
     } else {
         updateDesktopSlider();
     }
@@ -213,7 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function handleResize() {
         if (window.innerWidth < 640) {
             // Cambiar a sistema móvil
-            showMobileCard(currentMobileCard);
+            updateMobileButtons();
         } else {
             // Cambiar a sistema desktop
             const visibleSlides = getVisibleSlides();
@@ -235,10 +241,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const slider = document.getElementById('expContainer');
     
     slider.addEventListener('touchstart', (e) => {
+        if (window.innerWidth < 640) return;
         startX = e.touches[0].clientX;
     });
     
     slider.addEventListener('touchend', (e) => {
+        if (window.innerWidth < 640) return;
         endX = e.changedTouches[0].clientX;
         handleSwipe();
     });
@@ -254,5 +262,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 prevSlide();
             }
         }
+    }
+
+    // Sincronizar los botones con el desplazamiento manual del carrusel móvil
+    if (mobileTrack) {
+        let scrollAnimationFrame;
+        mobileTrack.addEventListener('scroll', () => {
+            if (scrollAnimationFrame) {
+                cancelAnimationFrame(scrollAnimationFrame);
+            }
+            scrollAnimationFrame = requestAnimationFrame(syncMobileIndexFromScroll);
+        });
     }
 });

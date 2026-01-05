@@ -168,12 +168,12 @@
             <h2 class="text-3xl font-bold mb-8 text-left text-gray-800 dark:text-gray-100">Experiencia</h2>
             <div class="relative">
                 <!-- Botones de navegación -->
-                <button id="prevExp" class="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white dark:bg-gray-800 p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-600">
+                <button id="prevExp" class="absolute sm:left-0 sm:top-1/2 sm:-translate-y-1/2 sm:bottom-auto sm:right-auto bottom-3 right-16 z-10 bg-white dark:bg-gray-800 p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-600">
                     <svg class="w-5 h-5 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
                     </svg>
                 </button>
-                <button id="nextExp" class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white dark:bg-gray-800 p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-600">
+                <button id="nextExp" class="absolute sm:right-0 sm:top-1/2 sm:-translate-y-1/2 sm:bottom-auto sm:left-auto bottom-3 right-3 z-10 bg-white dark:bg-gray-800 p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-600">
                     <svg class="w-5 h-5 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                     </svg>
@@ -182,8 +182,9 @@
                 <!-- Contenedor con navegación diferente para móvil y desktop -->
                 <div id="expContainer" class="mx-0 sm:mx-12 px-4 sm:px-0">
                     <!-- Móvil: Una tarjeta por vez sin transición -->
-                    <div class="block sm:hidden">
-                        <div id="mobileCard0" class="mobile-card w-full h-96 bg-white dark:bg-gray-800 rounded-xl p-4 shadow-lg border border-gray-200 dark:border-gray-700 flex flex-col">
+                    <div class="block sm:hidden relative">
+                        <div id="mobileTrack" class="mobile-track flex gap-4 overflow-x-auto pb-16 snap-x snap-mandatory">
+                        <div id="mobileCard0" class="mobile-card w-full h-96 bg-white dark:bg-gray-800 rounded-xl p-4 shadow-lg border border-gray-200 dark:border-gray-700 flex flex-col snap-start shrink-0">
                             <h3 class="text-lg font-semibold mb-4 text-gray-800 dark:text-gray-100">Freelancer: Desarrollador Web</h3>
                             <ul class="text-gray-600 dark:text-gray-400 mb-6 space-y-3 text-sm flex-grow">
                                 <li class="flex items-start">
@@ -193,7 +194,7 @@
                             </ul>
                             <p class="text-right text-xs text-gray-500 dark:text-gray-400 font-medium mt-auto">2023 - Actualmente</p>
                         </div>
-                        <div id="mobileCard1" class="mobile-card w-full h-96 bg-white dark:bg-gray-800 rounded-xl p-4 shadow-lg border border-gray-200 dark:border-gray-700 flex flex-col">
+                        <div id="mobileCard1" class="mobile-card w-full h-96 bg-white dark:bg-gray-800 rounded-xl p-4 shadow-lg border border-gray-200 dark:border-gray-700 flex flex-col snap-start shrink-0">
                             <h3 class="text-lg font-semibold mb-4 text-gray-800 dark:text-gray-100">Grupo Crater: Developer Fullstack</h3>
                             <ul class="text-gray-600 dark:text-gray-400 mb-6 space-y-3 text-sm flex-grow">
                                 <li class="flex items-start">
@@ -212,7 +213,7 @@
                             <p class="text-right text-xs text-gray-500 dark:text-gray-400 font-medium mt-auto">09/2025 - Actualmente</p>
                         </div>
 
-                        <div id="mobileCard2" class="mobile-card w-full h-96 bg-white dark:bg-gray-800 rounded-xl p-4 shadow-lg border border-gray-200 dark:border-gray-700 flex flex-col">
+                        <div id="mobileCard2" class="mobile-card w-full h-96 bg-white dark:bg-gray-800 rounded-xl p-4 shadow-lg border border-gray-200 dark:border-gray-700 flex flex-col snap-start shrink-0">
                             <h3 class="text-lg font-semibold mb-4 text-gray-800 dark:text-gray-100">Copy Mart: Developer FrontEnd</h3>
                             <ul class="text-gray-600 dark:text-gray-400 mb-6 space-y-3 text-sm flex-grow">
                                 <li class="flex items-start">
@@ -223,7 +224,7 @@
                             <p class="text-right text-xs text-gray-500 dark:text-gray-400 font-medium mt-auto">10/2025 - Actualmente</p>
                         </div>
 
-                        <div id="mobileCard3" class="mobile-card w-full h-96 bg-white dark:bg-gray-800 rounded-xl p-4 shadow-lg border border-gray-200 dark:border-gray-700 flex flex-col hidden">
+                        <div id="mobileCard3" class="mobile-card w-full h-96 bg-white dark:bg-gray-800 rounded-xl p-4 shadow-lg border border-gray-200 dark:border-gray-700 flex flex-col snap-start shrink-0">
                             <h3 class="text-lg font-semibold mb-4 text-gray-800 dark:text-gray-100">UDG CUCEI: Trabajo de laboratorio</h3>
                             <ul class="text-gray-600 dark:text-gray-400 mb-6 space-y-3 text-sm flex-grow">
                                 <li class="flex items-start">
@@ -233,8 +234,8 @@
                             </ul>
                             <p class="text-right text-xs text-gray-500 dark:text-gray-400 font-medium mt-auto">10/2024 - Actualmente</p>
                         </div>
-                        
-                        <div id="mobileCard4" class="mobile-card w-full h-96 bg-white dark:bg-gray-800 rounded-xl p-4 shadow-lg border border-gray-200 dark:border-gray-700 flex flex-col hidden">
+
+                        <div id="mobileCard4" class="mobile-card w-full h-96 bg-white dark:bg-gray-800 rounded-xl p-4 shadow-lg border border-gray-200 dark:border-gray-700 flex flex-col snap-start shrink-0">
                             <h3 class="text-lg font-semibold mb-4 text-gray-800 dark:text-gray-100">Grupo Carcam: Jefe de sistemas</h3>
                             <ul class="text-gray-600 dark:text-gray-400 mb-6 space-y-3 text-sm flex-grow">
                                 <li class="flex items-start">
@@ -259,6 +260,7 @@
                                 </li>
                             </ul>
                             <p class="text-right text-xs text-gray-500 dark:text-gray-400 font-medium mt-auto">05/2024 - 01/2025</p>
+                        </div>
                         </div>
                     </div>
                     

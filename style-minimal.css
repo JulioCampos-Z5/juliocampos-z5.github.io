@@ -79,6 +79,20 @@ html {
     }
 }
 
+/* Carrusel móvil con desplazamiento natural */
+.mobile-track {
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+}
+
+.mobile-track::-webkit-scrollbar {
+    display: none;
+}
+
+.mobile-card {
+    scroll-snap-align: start;
+}
+
 /* Efectos de carga */
 .loading-skeleton {
     background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
