@@ -1,9 +1,23 @@
 // Variables para el modo oscuro con Tailwind CSS
 let isDarkMode = false;
-const modoButton = document.getElementById('modo');
-const mobileTrack = document.getElementById('mobileTrack');
-const mobileCards = mobileTrack ? Array.from(mobileTrack.querySelectorAll('.mobile-card')) : [];
-const shareButton = document.getElementById('shareProfile');
+let modoButton;
+let mobileTrack;
+let mobileCards = [];
+let shareButton;
+
+function setModeIcon(dark) {
+    const icon = modoButton ? modoButton.querySelector('ion-icon') : null;
+    if (icon) {
+        icon.setAttribute('name', dark ? 'sunny-outline' : 'moon-outline');
+        if (dark) {
+            icon.classList.add('text-yellow-400');
+            icon.classList.remove('text-gray-700');
+        } else {
+            icon.classList.remove('text-yellow-400');
+            icon.classList.add('text-gray-700');
+        }
+    }
+}
 
 // Función para cambiar entre modo claro y oscuro
 function toggleDarkMode() {
@@ -11,12 +25,12 @@ function toggleDarkMode() {
     
     if (isDarkMode) {
         html.classList.remove('dark');
-        modoButton.textContent = '🌑';
+        setModeIcon(false);
         isDarkMode = false;
         localStorage.setItem('darkMode', 'false');
     } else {
         html.classList.add('dark');
-        modoButton.textContent = '☀️';
+        setModeIcon(true);
         isDarkMode = true;
         localStorage.setItem('darkMode', 'true');
     }
@@ -29,11 +43,11 @@ function initializeDarkMode() {
     
     if (savedMode === 'true' || (savedMode === null && prefersDark)) {
         document.documentElement.classList.add('dark');
-        modoButton.textContent = '☀️';
+        setModeIcon(true);
         isDarkMode = true;
     } else {
         document.documentElement.classList.remove('dark');
-        modoButton.textContent = '🌑';
+        setModeIcon(false);
         isDarkMode = false;
     }
 }
@@ -222,19 +236,23 @@ function toggleContactTooltip(event, contactGroup) {
 
 function setupContactListeners() {
     document.querySelectorAll('.contact-group').forEach(group => {
-        const image = group.querySelector('img').parentElement;
+        const imageContainer = group.querySelector('div:first-child') || group.querySelector('a:first-child');
         const tooltip = group.querySelector('.contact-tooltip');
-        const link = group.querySelector('.contact-tooltip a');
+        const link = tooltip ? tooltip.querySelector('a') : null;
+        
+        if (!imageContainer) return;
         
         // Click en la imagen para fijar/desfijar tooltip
-        image.addEventListener('click', (e) => {
+        imageContainer.addEventListener('click', (e) => {
             toggleContactTooltip(e, group);
         });
         
         // Click en el enlace cierra el tooltip y ejecuta la acción
-        link.addEventListener('click', () => {
-            group.classList.remove('pinned');
-        });
+        if (link) {
+            link.addEventListener('click', () => {
+                group.classList.remove('pinned');
+            });
+        }
     });
     
     // Cerrar tooltips al hacer click fuera
@@ -249,6 +267,12 @@ function setupContactListeners() {
 
 // Event listeners
 document.addEventListener('DOMContentLoaded', () => {
+    // Inicializar variables del DOM
+    modoButton = document.getElementById('modo');
+    mobileTrack = document.getElementById('mobileTrack');
+    mobileCards = mobileTrack ? Array.from(mobileTrack.querySelectorAll('.mobile-card')) : [];
+    shareButton = document.getElementById('shareProfile');
+    
     initializeDarkMode();
     
     // Inicializar sistema de experiencia según dispositivo
@@ -262,7 +286,9 @@ document.addEventListener('DOMContentLoaded', () => {
     setupContactListeners();
     
     // Botón de modo oscuro
-    modoButton.addEventListener('click', toggleDarkMode);
+    if (modoButton) {
+        modoButton.addEventListener('click', toggleDarkMode);
+    }
 
     // Botón compartir perfil
     if (shareButton) {
@@ -292,8 +318,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // Botones del slider de experiencia
-    document.getElementById('prevExp').addEventListener('click', prevSlide);
-    document.getElementById('nextExp').addEventListener('click', nextSlide);
+    const prevExpBtn = document.getElementById('prevExp');
+    const nextExpBtn = document.getElementById('nextExp');
+    if (prevExpBtn) prevExpBtn.addEventListener('click', prevSlide);
+    if (nextExpBtn) nextExpBtn.addEventListener('click', nextSlide);
     
     // Responsive - cambiar sistema según tamaño de pantalla
     function handleResize() {
