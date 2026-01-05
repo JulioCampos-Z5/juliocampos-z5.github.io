@@ -42,11 +42,25 @@
 
 /* Efectos hover para las habilidades */
 .skill-bubble {
+    background: #e5e7eb;
+    color: #111827;
+    border: 1px solid #d1d5db;
+    padding: 0.5rem 0.9rem;
+    border-radius: 9999px;
+    font-size: 0.9rem;
+    line-height: 1.2;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .skill-bubble:hover {
-    transform: translateY(-2px) scale(1.05);
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+}
+
+.dark .skill-bubble {
+    background: #1f2937;
+    color: #e5e7eb;
+    border-color: #374151;
 }
 
 /* Efectos para las tarjetas de tecnología */
