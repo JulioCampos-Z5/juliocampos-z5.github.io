@@ -3,7 +3,7 @@ let isDarkMode = false;
 const modoButton = document.getElementById('modo');
 const mobileTrack = document.getElementById('mobileTrack');
 const mobileCards = mobileTrack ? Array.from(mobileTrack.querySelectorAll('.mobile-card')) : [];
-const desktopSlides = document.querySelectorAll('#expSlider > div').length;
+const shareButton = document.getElementById('shareProfile');
 
 // Función para cambiar entre modo claro y oscuro
 function toggleDarkMode() {
@@ -41,13 +41,22 @@ function initializeDarkMode() {
 // Slider de experiencia - Sistemas separados para móvil y desktop
 let currentSlide = 0;
 let currentMobileIndex = 0;
-const totalSlides = Math.max(mobileCards.length, desktopSlides);
+function getVisibleMobileCards() {
+    return mobileCards.filter(card => !card.classList.contains('hidden'));
+}
+
+function getVisibleMobileCount() {
+    const visibles = getVisibleMobileCards();
+    return visibles.length || mobileCards.length;
+}
 
 // Sistema para móvil - desplazamiento natural
 function scrollMobileTo(targetIndex) {
     if (!mobileTrack || mobileCards.length === 0) return;
-    const clampedIndex = Math.min(Math.max(targetIndex, 0), mobileCards.length - 1);
-    const targetCard = mobileCards[clampedIndex];
+    const visibles = getVisibleMobileCards();
+    if (visibles.length === 0) return;
+    const clampedIndex = Math.min(Math.max(targetIndex, 0), visibles.length - 1);
+    const targetCard = visibles[clampedIndex];
     mobileTrack.scrollTo({ left: targetCard.offsetLeft, behavior: 'smooth' });
     currentMobileIndex = clampedIndex;
     updateMobileButtons();
@@ -56,22 +65,29 @@ function scrollMobileTo(targetIndex) {
 function updateMobileButtons() {
     const prevBtn = document.getElementById('prevExp');
     const nextBtn = document.getElementById('nextExp');
-    if (!prevBtn || !nextBtn || mobileCards.length === 0 || window.innerWidth >= 640) return;
+    const visibles = getVisibleMobileCards();
+    if (!prevBtn || !nextBtn || visibles.length === 0 || window.innerWidth >= 640) return;
+
+    if (currentMobileIndex >= visibles.length) {
+        currentMobileIndex = Math.max(0, visibles.length - 1);
+    }
 
     prevBtn.style.opacity = currentMobileIndex === 0 ? '0.5' : '1';
     prevBtn.style.pointerEvents = currentMobileIndex === 0 ? 'none' : 'auto';
 
-    nextBtn.style.opacity = currentMobileIndex >= mobileCards.length - 1 ? '0.5' : '1';
-    nextBtn.style.pointerEvents = currentMobileIndex >= mobileCards.length - 1 ? 'none' : 'auto';
+    nextBtn.style.opacity = currentMobileIndex >= visibles.length - 1 ? '0.5' : '1';
+    nextBtn.style.pointerEvents = currentMobileIndex >= visibles.length - 1 ? 'none' : 'auto';
 }
 
 function syncMobileIndexFromScroll() {
     if (!mobileTrack || mobileCards.length === 0) return;
+    const visibles = getVisibleMobileCards();
+    if (visibles.length === 0) return;
     const scrollLeft = mobileTrack.scrollLeft;
     let closestIndex = 0;
     let smallestDistance = Number.MAX_VALUE;
 
-    mobileCards.forEach((card, index) => {
+    visibles.forEach((card, index) => {
         const distance = Math.abs(card.offsetLeft - scrollLeft);
         if (distance < smallestDistance) {
             smallestDistance = distance;
@@ -85,14 +101,36 @@ function syncMobileIndexFromScroll() {
 
 // Sistema para desktop - slider original
 function getSlideWidth() {
-    return 320 + 24; // w-80 = 320px + gap
+    const slider = document.getElementById('expSlider');
+    if (!slider) return 0;
+
+    const first = slider.firstElementChild;
+    const second = first ? first.nextElementSibling : null;
+
+    if (first && second) {
+        const gap = second.offsetLeft - first.offsetLeft - first.offsetWidth;
+        return first.offsetWidth + Math.max(gap, 0);
+    }
+
+    return first ? first.offsetWidth : 0;
 }
 
 function getVisibleSlides() {
     const container = document.getElementById('expContainer');
-    const containerWidth = container.clientWidth - 96;
+    const containerWidth = container.clientWidth;
     const slideWidth = getSlideWidth();
-    return Math.floor(containerWidth / slideWidth);
+    if (slideWidth <= 0) return 1;
+    return Math.floor(containerWidth / slideWidth) || 1;
+}
+
+function getVisibleDesktopCount() {
+    const cards = Array.from(document.querySelectorAll('#expSlider > div'));
+    const visible = cards.filter(card => !card.classList.contains('hidden')).length;
+    return visible || cards.length;
+}
+
+function getTotalSlides() {
+    return window.innerWidth < 640 ? getVisibleMobileCount() : getVisibleDesktopCount();
 }
 
 function updateDesktopSlider() {
@@ -106,7 +144,8 @@ function updateDesktopSlider() {
     const prevBtn = document.getElementById('prevExp');
     const nextBtn = document.getElementById('nextExp');
     const visibleSlides = getVisibleSlides();
-    const maxSlide = Math.max(0, totalSlides - visibleSlides);
+    const maxSlide = Math.max(0, getTotalSlides() - visibleSlides);
+    currentSlide = Math.min(currentSlide, maxSlide);
     
     prevBtn.style.opacity = currentSlide === 0 ? '0.5' : '1';
     prevBtn.style.pointerEvents = currentSlide === 0 ? 'none' : 'auto';
@@ -114,7 +153,7 @@ function updateDesktopSlider() {
     nextBtn.style.opacity = currentSlide >= maxSlide ? '0.5' : '1';
     nextBtn.style.pointerEvents = currentSlide >= maxSlide ? 'none' : 'auto';
     
-    const hideButtons = totalSlides <= visibleSlides;
+    const hideButtons = getTotalSlides() <= visibleSlides;
     prevBtn.style.display = hideButtons ? 'none' : 'flex';
     nextBtn.style.display = hideButtons ? 'none' : 'flex';
 }
@@ -124,7 +163,7 @@ function nextSlide() {
         scrollMobileTo(currentMobileIndex + 1);
     } else { // Desktop
         const visibleSlides = getVisibleSlides();
-        const maxSlide = Math.max(0, totalSlides - visibleSlides);
+        const maxSlide = Math.max(0, getTotalSlides() - visibleSlides);
         if (currentSlide < maxSlide) {
             currentSlide++;
             updateDesktopSlider();
@@ -210,6 +249,33 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Botón de modo oscuro
     modoButton.addEventListener('click', toggleDarkMode);
+
+    // Botón compartir perfil
+    if (shareButton) {
+        shareButton.addEventListener('click', async () => {
+            const data = {
+                title: 'Julio Cesar Campos Aguilar',
+                text: 'CV y portafolio de Julio Cesar Campos Aguilar.',
+                url: window.location.href
+            };
+
+            if (navigator.share) {
+                try {
+                    await navigator.share(data);
+                } catch (err) {
+                    console.error('No se pudo compartir', err);
+                }
+            } else if (navigator.clipboard) {
+                try {
+                    await navigator.clipboard.writeText(data.url);
+                    shareButton.textContent = 'Link copiado';
+                    setTimeout(() => shareButton.textContent = 'Compartir perfil', 1800);
+                } catch (err) {
+                    console.error('No se pudo copiar', err);
+                }
+            }
+        });
+    }
     
     // Botones del slider de experiencia
     document.getElementById('prevExp').addEventListener('click', prevSlide);
