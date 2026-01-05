@@ -138,13 +138,27 @@ function updateDesktopSlider() {
     if (!slider) return;
     
     const slideWidth = getSlideWidth();
+    const total = getTotalSlides();
+    const visibleSlides = Math.max(1, getVisibleSlides());
+
+    if (total <= visibleSlides) {
+        currentSlide = 0;
+        slider.style.transform = 'translateX(0)';
+        const prevBtn = document.getElementById('prevExp');
+        const nextBtn = document.getElementById('nextExp');
+        if (prevBtn && nextBtn) {
+            prevBtn.style.display = 'none';
+            nextBtn.style.display = 'none';
+        }
+        return;
+    }
+
     const offset = -currentSlide * slideWidth;
     slider.style.transform = `translateX(${offset}px)`;
     
     const prevBtn = document.getElementById('prevExp');
     const nextBtn = document.getElementById('nextExp');
-    const visibleSlides = getVisibleSlides();
-    const maxSlide = Math.max(0, getTotalSlides() - visibleSlides);
+    const maxSlide = Math.max(0, total - visibleSlides);
     currentSlide = Math.min(currentSlide, maxSlide);
     
     prevBtn.style.opacity = currentSlide === 0 ? '0.5' : '1';
@@ -284,15 +298,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Responsive - cambiar sistema según tamaño de pantalla
     function handleResize() {
         if (window.innerWidth < 640) {
-            // Cambiar a sistema móvil
             updateMobileButtons();
         } else {
-            // Cambiar a sistema desktop
             const visibleSlides = getVisibleSlides();
-            const maxSlide = Math.max(0, totalSlides - visibleSlides);
-            if (currentSlide > maxSlide) {
-                currentSlide = maxSlide;
-            }
+            const maxSlide = Math.max(0, getTotalSlides() - visibleSlides);
+            currentSlide = Math.min(currentSlide, maxSlide);
             updateDesktopSlider();
         }
     }
