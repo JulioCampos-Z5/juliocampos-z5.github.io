@@ -379,19 +379,49 @@
                 </div>
             </div>
         </section>
-        <!--Proyectos
-            <article class="proyectos">
-                <h2 class="T_P">Proyectos</h2>
-                <div class="Tarj">
-                    <h3>Título:</h3>
+
+        <!-- Proyectos con desplazamiento -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold mb-8 text-left text-gray-800 dark:text-gray-100">Proyectos</h2>
+            <div class="relative">
+                <div id="proyContainer" class="mx-0 sm:mx-0 px-0 sm:px-0">
+                    <!-- Móvil: Una tarjeta por vez -->
+                    <div class="block sm:hidden relative">
+                        <div id="mobileProyTrack"
+                            class="mobile-track flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory">
+                            <!-- Las tarjetas se cargarán dinámicamente aquí -->
+                        </div>
+                    </div>
+
+                    <!-- Desktop: Slider -->
+                    <div class="hidden sm:block overflow-hidden">
+                        <div id="proySlider" class="flex gap-6 transition-transform duration-500 ease-in-out">
+                            <!-- Las tarjetas se cargarán dinámicamente aquí -->
+                        </div>
+                    </div>
                 </div>
-                <div class="Tarj">
-                    <h3>Título:</h3>
+
+                <!-- Botones de navegación -->
+                <div class="flex justify-end gap-3 mt-0 sm:mt-4">
+                    <button id="prevProy"
+                        class="bg-white dark:bg-gray-800 p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-600">
+                        <svg class="w-5 h-5 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7">
+                            </path>
+                        </svg>
+                    </button>
+                    <button id="nextProy"
+                        class="bg-white dark:bg-gray-800 p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-600">
+                        <svg class="w-5 h-5 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                            </path>
+                        </svg>
+                    </button>
                 </div>
-                <div class="Tarj">
-                    <h3>Título:</h3>
-                </div>
-            </article> -->
+            </div>
+        </section>
 
         <!-- Habilidades con dos columnas -->
         <section class="mb-16 animate-fadeInUp">

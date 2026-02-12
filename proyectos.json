@@ -1,0 +1,38 @@
+[
+    {
+        "titulo": "Sistema de Validación de Datos de Calidad del Aire",
+        "descripcion": "Aplicación web para validar y analizar datos de calidad del aire.",
+        "tecnologias": ["React.js", "Python"],
+        "imagen": "img/proyectos/proyecto1.jpg",
+        "link": "https://github.com/JulioCampos-Z5/Validador-de-Calidad-del-Aire",
+        "demo": "",
+        "fecha": "2025"
+    },
+    {
+        "titulo": "Bitacora de Gestión de Proyectos",
+        "descripcion": "Aplicacion web para gestionar proyectos con funcionalidades de seguimiento de tareas, generación de reportes. Permite a los equipos colaborar eficientemente y mantener un registro detallado del progreso del proyecto.",
+        "tecnologias": ["Laravel", "Tailwind", "MySQL"],
+        "imagen": "img/proyectos/proyecto2.jpg",
+        "link": "",
+        "demo": "",
+        "fecha": "2025"
+    },
+    {
+        "titulo": "ERP",
+        "descripcion": "Sistema de planificación de recursos empresariales (ERP) para pequeñas y medianas empresas. Incluye módulos para gestión de inventarios, ventas, compras, finanzas y recursos humanos.",
+        "tecnologias": ["Vue.js", "TypeScript", "Node.js"],
+        "imagen": "img/proyectos/proyecto3.jpg",
+        "link": "",
+        "demo": "",
+        "fecha": "2025"
+    }
+    // ,{
+    //     "titulo": "",
+    //     "descripcion": "",
+    //     "tecnologias": ["PHP", "JavaScript", "MariaDB"],
+    //     "imagen": "img/proyectos/proyecto4.jpg",
+    //     "link": "",
+    //     "demo": "",
+    //     "fecha": ""
+    // }
+]
