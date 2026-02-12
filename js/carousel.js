@@ -214,7 +214,7 @@ function createProyectoCard(proyecto, isMobile = false) {
 
 async function loadProyectos() {
     try {
-        const response = await fetch('proyectos.json');
+        const response = await fetch('json/proyectos.json');
         const proyectos = await response.json();
         
         const mobileContainer = document.getElementById('mobileProyTrack');
@@ -505,5 +505,19 @@ function initCarousels() {
             }
             scrollAnimationFrame = requestAnimationFrame(syncMobileIndexFromScroll);
         });
+    }
+}
+
+// Reinicializar carrusel de experiencia después de cargar datos del JSON
+function reinitExpCarousel() {
+    mobileTrack = document.getElementById('mobileTrack');
+    mobileCards = mobileTrack ? Array.from(mobileTrack.querySelectorAll('.mobile-card')) : [];
+    currentSlide = 0;
+    currentMobileIndex = 0;
+    
+    if (window.innerWidth < 640) {
+        updateMobileButtons();
+    } else {
+        updateDesktopSlider();
     }
 }

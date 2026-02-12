@@ -1,0 +1,30 @@
+{
+  "habilidades": [
+    {
+      "titulo": "Stack técnico",
+      "icono": "blue-500",
+      "items": [
+        "Desarrollo Web y Escritorio",
+        "Estructura de Datos (POO)",
+        "Bases de Datos (SQL)",
+        "Ciencia de datos",
+        "API (REST)",
+        "Servidores (Ubuntu, Debian)",
+        "Maquetación y Documentación",
+        "CI/CD"
+      ]
+    },
+    {
+      "titulo": "Soft skills",
+      "icono": "amber-500",
+      "items": [
+        "Liderazgo",
+        "Comunicación",
+        "Trabajo en equipo",
+        "Gestión de proyectos",
+        "Documentación clara",
+        "Aprendizaje continuo"
+      ]
+    }
+  ]
+}

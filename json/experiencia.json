@@ -1,0 +1,40 @@
+{
+  "experiencia": [
+    {
+      "titulo": "Freelancer: Desarrollador Web",
+      "periodo": "2023 - Actualmente",
+      "icono": "blue-500",
+      "descripcion": [
+        "Desarrollo de aplicaciones web.",
+        "Manejo de servidores.",
+        "Consultoría a pymes."
+      ]
+    },
+    {
+      "titulo": "Grupo Crater: Developer Fullstack",
+      "periodo": "09/2025 - Actualmente",
+      "icono": "blue-500",
+      "descripcion": [
+        "Desarrollo de aplicaciones web.",
+        "Manejo de servidores.",
+        "Atención a clientes."
+      ]
+    },
+    {
+      "titulo": "Copy Mart: Developer FrontEnd",
+      "periodo": "10/2025 - Actualmente",
+      "icono": "blue-500",
+      "descripcion": [
+        "Desarrollo de aplicaciones web."
+      ]
+    },
+    {
+      "titulo": "UDG CUCEI: Trabajo de laboratorio",
+      "periodo": "10/2024 - Actualmente",
+      "icono": "purple-500",
+      "descripcion": [
+        "Trabajo de investigación y desarrollo en laboratorio universitario."
+      ]
+    }
+  ]
+}
