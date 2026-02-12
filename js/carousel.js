@@ -1,60 +1,9 @@
-// Variables para el modo oscuro con Tailwind CSS
-let isDarkMode = false;
-let modoButton;
-let mobileTrack;
-let mobileCards = [];
-let shareButton;
-
-function setModeIcon(dark) {
-    const icon = modoButton ? modoButton.querySelector('ion-icon') : null;
-    if (icon) {
-        icon.setAttribute('name', dark ? 'sunny-outline' : 'moon-outline');
-        if (dark) {
-            icon.classList.add('text-yellow-400');
-            icon.classList.remove('text-gray-700');
-        } else {
-            icon.classList.remove('text-yellow-400');
-            icon.classList.add('text-gray-700');
-        }
-    }
-}
-
-// Función para cambiar entre modo claro y oscuro
-function toggleDarkMode() {
-    const html = document.documentElement;
-    
-    if (isDarkMode) {
-        html.classList.remove('dark');
-        setModeIcon(false);
-        isDarkMode = false;
-        localStorage.setItem('darkMode', 'false');
-    } else {
-        html.classList.add('dark');
-        setModeIcon(true);
-        isDarkMode = true;
-        localStorage.setItem('darkMode', 'true');
-    }
-}
-
-// Detectar preferencia guardada o del sistema
-function initializeDarkMode() {
-    const savedMode = localStorage.getItem('darkMode');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    
-    if (savedMode === 'true' || (savedMode === null && prefersDark)) {
-        document.documentElement.classList.add('dark');
-        setModeIcon(true);
-        isDarkMode = true;
-    } else {
-        document.documentElement.classList.remove('dark');
-        setModeIcon(false);
-        isDarkMode = false;
-    }
-}
-
 // Slider de experiencia - Sistemas separados para móvil y desktop
 let currentSlide = 0;
 let currentMobileIndex = 0;
+let mobileTrack;
+let mobileCards = [];
+
 function getVisibleMobileCards() {
     return mobileCards.filter(card => !card.classList.contains('hidden'));
 }
@@ -216,53 +165,6 @@ function updateSlider() {
     } else {
         updateDesktopSlider();
     }
-}
-
-// Funciones de contacto con pin/click
-function toggleContactTooltip(event, contactGroup) {
-    event.preventDefault();
-    event.stopPropagation();
-    
-    // Cerrar otros tooltips abiertos
-    document.querySelectorAll('.contact-group.pinned').forEach(group => {
-        if (group !== contactGroup) {
-            group.classList.remove('pinned');
-        }
-    });
-    
-    // Toggle del tooltip actual
-    contactGroup.classList.toggle('pinned');
-}
-
-function setupContactListeners() {
-    document.querySelectorAll('.contact-group').forEach(group => {
-        const imageContainer = group.querySelector('div:first-child') || group.querySelector('a:first-child');
-        const tooltip = group.querySelector('.contact-tooltip');
-        const link = tooltip ? tooltip.querySelector('a') : null;
-        
-        if (!imageContainer) return;
-        
-        // Click en la imagen para fijar/desfijar tooltip
-        imageContainer.addEventListener('click', (e) => {
-            toggleContactTooltip(e, group);
-        });
-        
-        // Click en el enlace cierra el tooltip y ejecuta la acción
-        if (link) {
-            link.addEventListener('click', () => {
-                group.classList.remove('pinned');
-            });
-        }
-    });
-    
-    // Cerrar tooltips al hacer click fuera
-    document.addEventListener('click', (e) => {
-        if (!e.target.closest('.contact-group')) {
-            document.querySelectorAll('.contact-group.pinned').forEach(group => {
-                group.classList.remove('pinned');
-            });
-        }
-    });
 }
 
 // Variables para proyectos
@@ -501,15 +403,11 @@ function updateProySlider() {
     }
 }
 
-// Event listeners
-document.addEventListener('DOMContentLoaded', () => {
+// Inicializar carruseles
+function initCarousels() {
     // Inicializar variables del DOM
-    modoButton = document.getElementById('modo');
     mobileTrack = document.getElementById('mobileTrack');
     mobileCards = mobileTrack ? Array.from(mobileTrack.querySelectorAll('.mobile-card')) : [];
-    shareButton = document.getElementById('shareProfile');
-    
-    initializeDarkMode();
     
     // Cargar proyectos
     loadProyectos();
@@ -519,41 +417,6 @@ document.addEventListener('DOMContentLoaded', () => {
         updateMobileButtons();
     } else {
         updateDesktopSlider();
-    }
-    
-    // Inicializar contactos con click
-    setupContactListeners();
-    
-    // Botón de modo oscuro
-    if (modoButton) {
-        modoButton.addEventListener('click', toggleDarkMode);
-    }
-
-    // Botón compartir perfil
-    if (shareButton) {
-        shareButton.addEventListener('click', async () => {
-            const data = {
-                title: 'Julio Cesar Campos Aguilar',
-                text: 'CV y portafolio de Julio Cesar Campos Aguilar.',
-                url: window.location.href
-            };
-
-            if (navigator.share) {
-                try {
-                    await navigator.share(data);
-                } catch (err) {
-                    console.error('No se pudo compartir', err);
-                }
-            } else if (navigator.clipboard) {
-                try {
-                    await navigator.clipboard.writeText(data.url);
-                    shareButton.textContent = 'Link copiado';
-                    setTimeout(() => shareButton.textContent = 'Compartir perfil', 1800);
-                } catch (err) {
-                    console.error('No se pudo copiar', err);
-                }
-            }
-        });
     }
     
     // Botones del slider de experiencia
@@ -643,4 +506,4 @@ document.addEventListener('DOMContentLoaded', () => {
             scrollAnimationFrame = requestAnimationFrame(syncMobileIndexFromScroll);
         });
     }
-});
+}
