@@ -5,23 +5,14 @@ import proyectosData from '../data/proyectos.json';
 
 const proyectos: Proyecto[] = proyectosData;
 
-// Paleta de gradientes para proyectos sin imagen
-const gradients = [
-    'linear-gradient(135deg, #3b82f6, #8b5cf6)',
-    'linear-gradient(135deg, #06b6d4, #3b82f6)',
-    'linear-gradient(135deg, #8b5cf6, #ec4899)',
-    'linear-gradient(135deg, #10b981, #06b6d4)',
-    'linear-gradient(135deg, #f59e0b, #ef4444)',
-];
-
-function ProyectoCard({ proyecto, index, mobile }: { proyecto: Proyecto; index: number; mobile: boolean }) {
+function ProyectoCard({ proyecto, mobile }: { proyecto: Proyecto; mobile: boolean }) {
     const cardClass = mobile
         ? 'mobile-card card-lift w-full bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 flex flex-col snap-start shrink-0 overflow-hidden'
         : 'card-lift shrink-0 w-[calc((100%-3rem)/3)] min-w-[18rem] bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 flex flex-col overflow-hidden';
 
     return (
         <div className={cardClass}>
-            {proyecto.imagen ? (
+            {proyecto.imagen && (
                 <img
                     src={proyecto.imagen}
                     alt={proyecto.titulo}
@@ -30,13 +21,6 @@ function ProyectoCard({ proyecto, index, mobile }: { proyecto: Proyecto; index: 
                         e.currentTarget.style.display = 'none';
                     }}
                 />
-            ) : (
-                <div
-                    className="w-full h-24 flex items-end p-3 shrink-0"
-                    style={{ background: gradients[index % gradients.length] }}
-                >
-                    <span className="text-white/90 font-mono text-sm font-semibold">&lt;/&gt; {proyecto.fecha}</span>
-                </div>
             )}
             <div className="p-4 sm:p-6 flex flex-col grow">
                 <h3 className="text-lg sm:text-xl font-semibold mb-2 text-gray-800 dark:text-gray-100">{proyecto.titulo}</h3>
@@ -87,8 +71,8 @@ export default function Proyectos() {
             <SectionTitle subtitle="Algunos de los proyectos en los que he trabajado.">Proyectos</SectionTitle>
             <Carousel
                 total={proyectos.length}
-                mobileCards={proyectos.map((p, i) => <ProyectoCard key={p.titulo} proyecto={p} index={i} mobile />)}
-                desktopCards={proyectos.map((p, i) => <ProyectoCard key={p.titulo} proyecto={p} index={i} mobile={false} />)}
+                mobileCards={proyectos.map((p) => <ProyectoCard key={p.titulo} proyecto={p} mobile />)}
+                desktopCards={proyectos.map((p) => <ProyectoCard key={p.titulo} proyecto={p} mobile={false} />)}
             />
         </section>
     );

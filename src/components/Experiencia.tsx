@@ -13,8 +13,6 @@ function ExpCard({ exp, mobile }: { exp: ExperienciaItem; mobile: boolean }) {
 
     return (
         <div className={cardClass}>
-            {/* Barra de acento superior */}
-            <span className="block h-1.5 w-full shrink-0" style={{ background: `linear-gradient(to right, ${color}, #8b5cf6)` }}></span>
             <div className={`flex flex-col grow ${mobile ? 'p-4' : 'p-6'}`}>
                 <h3 className={`${mobile ? 'text-lg' : 'text-xl'} font-semibold mb-4 text-gray-800 dark:text-gray-100`}>
                     {exp.titulo}

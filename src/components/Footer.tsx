@@ -26,9 +26,6 @@ export default function Footer() {
                 <p className="text-gray-600 dark:text-gray-400">
                     © 2026 Julio Cesar Campos Aguilar. Todos los derechos reservados.
                 </p>
-                <p className="text-xs text-gray-500 dark:text-gray-500 mt-2">
-                    Hecho con React, TypeScript y Tailwind CSS
-                </p>
             </div>
         </footer>
     );
