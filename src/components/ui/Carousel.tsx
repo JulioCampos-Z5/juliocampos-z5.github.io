@@ -94,7 +94,7 @@ export default function Carousel({ total, mobileCards, desktopCards }: CarouselP
     const hideButtons = !isMobile && total <= visibleSlides;
 
     const buttonClass =
-        'absolute top-1/2 -translate-y-1/2 z-10 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm p-2.5 rounded-full shadow-md hover:shadow-lg transition-all duration-300 border border-gray-200 dark:border-gray-600 disabled:opacity-0 disabled:pointer-events-none';
+        'bg-white dark:bg-gray-800 p-3 rounded-full shadow-lg border border-gray-200 dark:border-gray-600 disabled:opacity-50 disabled:pointer-events-none';
 
     return (
         <div className="relative">
@@ -122,20 +122,20 @@ export default function Carousel({ total, mobileCards, desktopCards }: CarouselP
                 </div>
             </div>
 
-            {/* Flechas de navegación a los costados */}
+            {/* Botones de navegación debajo de las tarjetas */}
             {!hideButtons && (
-                <>
-                    <button onClick={prev} disabled={atStart} className={`${buttonClass} -left-3 sm:-left-4`} aria-label="Anterior">
+                <div className="flex justify-end gap-3 mt-0 sm:mt-4">
+                    <button onClick={prev} disabled={atStart} className={buttonClass} aria-label="Anterior">
                         <svg className="w-5 h-5 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
                         </svg>
                     </button>
-                    <button onClick={next} disabled={atEnd} className={`${buttonClass} -right-3 sm:-right-4`} aria-label="Siguiente">
+                    <button onClick={next} disabled={atEnd} className={buttonClass} aria-label="Siguiente">
                         <svg className="w-5 h-5 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
                         </svg>
                     </button>
-                </>
+                </div>
             )}
         </div>
     );
