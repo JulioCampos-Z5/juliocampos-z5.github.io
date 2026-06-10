@@ -1,5 +1,18 @@
 [
     {
+        "titulo": "Applicación Multiplataforma de gestion personal",
+        "descripcion": "Aplicación web, móvil y de escritorio para gestionar datos personales y tareas.",
+        "tecnologias": [
+            "React.js, Native, Electron",
+            "Express.js",
+            "TypeScript"
+        ],
+        "imagen": "",
+        "link": "",
+        "demo": "",
+        "fecha": "2026"
+    },
+    {
         "titulo": "Sistema de Validación de Datos de Calidad del Aire",
         "descripcion": "Aplicación web para validar y analizar datos de calidad del aire.",
         "tecnologias": [
