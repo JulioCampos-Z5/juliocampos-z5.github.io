@@ -42,6 +42,40 @@
     animation: fadeInUp 0.6s ease-out;
 }
 
+/* Aparición suave al hacer scroll */
+.reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+
+.reveal-visible {
+    opacity: 1;
+    transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
+
+/* Elevación de tarjetas al pasar el cursor */
+.card-lift {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 35px rgba(0, 0, 0, 0.12);
+}
+
+.dark .card-lift:hover {
+    box-shadow: 0 18px 35px rgba(0, 0, 0, 0.45);
+}
+
 /* Efectos hover para las habilidades */
 .skill-bubble {
     background: #e5e7eb;
@@ -56,7 +90,14 @@
 
 .skill-bubble:hover {
     transform: translateY(-2px) scale(1.02);
-    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 8px 18px rgba(59, 130, 246, 0.18);
+    border-color: #93c5fd;
+    color: #1d4ed8;
+}
+
+.dark .skill-bubble:hover {
+    border-color: #3b82f6;
+    color: #93c5fd;
 }
 
 .dark .skill-bubble {

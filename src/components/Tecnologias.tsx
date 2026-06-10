@@ -1,3 +1,5 @@
+import SectionTitle from './SectionTitle.tsx';
+
 interface Tech {
     nombre: string;
     imagen: string;
@@ -5,12 +7,14 @@ interface Tech {
 
 interface TechGroup {
     titulo: string;
+    icono: string;
     items: Tech[];
 }
 
 const grupos: TechGroup[] = [
     {
         titulo: 'Lenguajes',
+        icono: 'code-slash-outline',
         items: [
             { nombre: 'PHP', imagen: 'img/PHP.png' },
             { nombre: 'Node.js', imagen: 'img/node.png' },
@@ -25,6 +29,7 @@ const grupos: TechGroup[] = [
     },
     {
         titulo: 'Frameworks',
+        icono: 'layers-outline',
         items: [
             { nombre: 'React', imagen: 'img/React.svg.png' },
             { nombre: 'Tailwind', imagen: 'img/tailwind.png' },
@@ -35,6 +40,7 @@ const grupos: TechGroup[] = [
     },
     {
         titulo: 'SGBD (SQL)',
+        icono: 'server-outline',
         items: [
             { nombre: 'MySQL', imagen: 'img/MySQL.png' },
             { nombre: 'MariaDB', imagen: 'img/MariaDB.png' },
@@ -46,23 +52,28 @@ const grupos: TechGroup[] = [
 export default function Tecnologias() {
     return (
         <section className="mb-16">
-            <h2 className="text-3xl font-bold mb-8 text-left text-gray-800 dark:text-gray-100">
+            <SectionTitle subtitle="Las herramientas con las que construyo soluciones.">
                 Tecnologías y Herramientas
-            </h2>
+            </SectionTitle>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto px-4">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 {grupos.map((grupo) => (
                     <div key={grupo.titulo} className="flex flex-col">
-                        <h3 className="text-xl font-semibold mb-4 text-center text-gray-700 dark:text-gray-300">
+                        <h3 className="text-xl font-semibold mb-4 text-center text-gray-700 dark:text-gray-300 flex items-center justify-center gap-2">
+                            <ion-icon name={grupo.icono} class="text-2xl text-blue-500"></ion-icon>
                             {grupo.titulo}
                         </h3>
                         <div className="grid grid-cols-3 gap-3">
                             {grupo.items.map((tech) => (
                                 <div
                                     key={tech.nombre}
-                                    className="tech-card flex flex-col items-center p-3 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700"
+                                    className="tech-card group flex flex-col items-center p-3 bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-xl border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600"
                                 >
-                                    <img src={tech.imagen} alt={tech.nombre} className="w-12 h-12 object-contain mb-1" />
+                                    <img
+                                        src={tech.imagen}
+                                        alt={tech.nombre}
+                                        className="w-12 h-12 object-contain mb-1 transition-transform duration-300 group-hover:scale-110"
+                                    />
                                     <span className="text-xs font-medium text-gray-600 dark:text-gray-400">{tech.nombre}</span>
                                 </div>
                             ))}

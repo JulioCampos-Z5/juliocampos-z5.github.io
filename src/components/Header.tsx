@@ -8,7 +8,10 @@ export default function Header({ isDark, onToggleDark }: HeaderProps) {
         <header className="sticky top-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
             <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
                 <h1 className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-gray-100 text-left">
-                    Julio Cesar Campos Aguilar: Desarrollador
+                    Julio Cesar Campos Aguilar:{' '}
+                    <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-600 to-violet-600 dark:from-blue-400 dark:to-violet-400">
+                        Desarrollador
+                    </span>
                 </h1>
                 <button
                     onClick={onToggleDark}
