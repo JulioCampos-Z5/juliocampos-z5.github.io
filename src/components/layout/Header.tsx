@@ -15,7 +15,9 @@ export default function Header({ isDark, onToggleDark }: HeaderProps) {
                     className="w-12 h-12 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors flex items-center justify-center active:scale-95"
                     aria-label="Cambiar modo oscuro"
                 >
+                    {/* key fuerza a recrear el web component: ionicons no redibuja bien al cambiar `name` */}
                     <ion-icon
+                        key={isDark ? 'sun' : 'moon'}
                         name={isDark ? 'sunny-outline' : 'moon-outline'}
                         class={`text-2xl ${isDark ? 'text-yellow-400' : 'text-gray-700'}`}
                     ></ion-icon>

@@ -1,7 +1,7 @@
-import Carousel from './Carousel.tsx';
-import SectionTitle from './SectionTitle.tsx';
-import type { Proyecto } from '../types.ts';
-import proyectosData from '../data/proyectos.json';
+import Carousel from '../ui/Carousel.tsx';
+import SectionTitle from '../ui/SectionTitle.tsx';
+import type { Proyecto } from '../../types.ts';
+import proyectosData from '../../data/proyectos.json';
 
 const proyectos: Proyecto[] = proyectosData;
 

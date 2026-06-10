@@ -21,9 +21,22 @@ export interface Habilidad {
     items: string[];
 }
 
-// Mapa de colores para los iconos
-export const colorMap: Record<string, string> = {
-    'blue-500': '#3b82f6',
-    'purple-500': '#a855f7',
-    'amber-500': '#f59e0b',
-};
+export interface Contacto {
+    id: string;
+    icon: string;
+    iconClass: string;
+    href: string;
+    label: string;
+    linkClass: string;
+}
+
+export interface Tech {
+    nombre: string;
+    imagen: string;
+}
+
+export interface TechGroup {
+    titulo: string;
+    icono: string;
+    items: Tech[];
+}

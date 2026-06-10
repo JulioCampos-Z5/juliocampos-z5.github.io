@@ -1,12 +1,12 @@
-import Header from './components/Header.tsx';
-import { MobileContacts, FloatingContacts } from './components/Contacts.tsx';
-import Experiencia from './components/Experiencia.tsx';
-import Proyectos from './components/Proyectos.tsx';
-import Habilidades from './components/Habilidades.tsx';
-import Tecnologias from './components/Tecnologias.tsx';
-import Footer from './components/Footer.tsx';
-import Reveal from './components/Reveal.tsx';
-import SectionTitle from './components/SectionTitle.tsx';
+import Header from './components/layout/Header.tsx';
+import { MobileContacts, FloatingContacts } from './components/layout/Contacts.tsx';
+import Footer from './components/layout/Footer.tsx';
+import Experiencia from './components/sections/Experiencia.tsx';
+import Proyectos from './components/sections/Proyectos.tsx';
+import Habilidades from './components/sections/Habilidades.tsx';
+import Tecnologias from './components/sections/Tecnologias.tsx';
+import Reveal from './components/ui/Reveal.tsx';
+import SectionTitle from './components/ui/SectionTitle.tsx';
 import { useDarkMode } from './hooks/useDarkMode.ts';
 
 export default function App() {
@@ -36,7 +36,7 @@ export default function App() {
                                 Desarrollador Web Fullstack
                             </h2>
                             <div className="hidden sm:flex flex-wrap gap-2 mt-4">
-                                {['Web', 'Escritorio', 'Móvil', 'Consultoría'].map((tag) => (
+                                {['Web', 'Escritorio', 'Móvil', 'Servicios'].map((tag) => (
                                     <span
                                         key={tag}
                                         className="px-3 py-1 text-xs font-medium text-white bg-white/15 backdrop-blur-sm rounded-full border border-white/25"

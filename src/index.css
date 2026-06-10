@@ -90,14 +90,7 @@
 
 .skill-bubble:hover {
     transform: translateY(-2px) scale(1.02);
-    box-shadow: 0 8px 18px rgba(59, 130, 246, 0.18);
-    border-color: #93c5fd;
-    color: #1d4ed8;
-}
-
-.dark .skill-bubble:hover {
-    border-color: #3b82f6;
-    color: #93c5fd;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
 }
 
 .dark .skill-bubble {

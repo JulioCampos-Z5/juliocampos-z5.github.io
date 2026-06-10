@@ -1,6 +1,7 @@
-import SectionTitle from './SectionTitle.tsx';
-import { colorMap, type Habilidad } from '../types.ts';
-import habilidadesData from '../data/habilidades.json';
+import SectionTitle from '../ui/SectionTitle.tsx';
+import type { Habilidad } from '../../types.ts';
+import { colorMap } from '../../constants.ts';
+import habilidadesData from '../../data/habilidades.json';
 
 const habilidades: Habilidad[] = habilidadesData.habilidades;
 

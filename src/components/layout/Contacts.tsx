@@ -1,12 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-
-const CONTACTS = [
-    { id: 'mail', icon: 'mail-outline', iconClass: 'text-gray-600 dark:text-gray-300', href: 'mailto:julioz5435@gmail.com', label: 'julioz5435@gmail.com', linkClass: 'hover:text-blue-600 dark:hover:text-blue-400' },
-    { id: 'tel', icon: 'call-outline', iconClass: 'text-gray-600 dark:text-gray-300', href: 'tel:+523329057215', label: '+52 333 905 7215', linkClass: 'hover:text-green-600 dark:hover:text-green-400' },
-    { id: 'whatsapp', icon: 'logo-whatsapp', iconClass: 'text-green-500', href: 'https://wa.me/qr/UXKOCPRLXDN2J1', label: 'WhatsApp', linkClass: 'hover:text-green-600 dark:hover:text-green-400' },
-    { id: 'linkedin', icon: 'logo-linkedin', iconClass: 'text-blue-600', href: 'https://www.linkedin.com/in/julio-cesar-campos-aguilar-b3a53b278', label: 'LinkedIn', linkClass: 'hover:text-blue-600 dark:hover:text-blue-400' },
-    { id: 'github', icon: 'logo-github', iconClass: 'text-gray-600 dark:text-gray-300', href: 'https://github.com/JulioCampos-Z5', label: 'GitHub', linkClass: 'hover:text-gray-900 dark:hover:text-white' },
-];
+import { contactos } from '../../data/contactos.ts';
 
 // Barra de contactos para móvil (horizontal, bajo el header)
 export function MobileContacts() {
@@ -41,7 +34,7 @@ export function MobileContacts() {
     return (
         <div className="lg:hidden bg-white dark:bg-gray-900 py-3 border-b border-gray-200 dark:border-gray-700">
             <div className="flex justify-center gap-4 px-4">
-                {CONTACTS.map((c) => (
+                {contactos.map((c) => (
                     <a key={c.id} href={c.href} target="_blank" rel="noreferrer" className={itemClass}>
                         <ion-icon name={c.icon} class={`text-xl ${c.iconClass}`}></ion-icon>
                     </a>
@@ -73,7 +66,7 @@ export function FloatingContacts() {
 
     return (
         <aside ref={asideRef} className="fixed top-28 left-2 z-40 flex-col gap-3 hidden lg:flex">
-            {CONTACTS.map((c) => (
+            {contactos.map((c) => (
                 <div key={c.id} className={`contact-group relative ${pinned === c.id ? 'pinned' : ''}`}>
                     <button
                         onClick={() => setPinned((p) => (p === c.id ? null : c.id))}

@@ -1,7 +1,8 @@
-import Carousel from './Carousel.tsx';
-import SectionTitle from './SectionTitle.tsx';
-import { colorMap, type Experiencia as ExperienciaItem } from '../types.ts';
-import experienciaData from '../data/experiencia.json';
+import Carousel from '../ui/Carousel.tsx';
+import SectionTitle from '../ui/SectionTitle.tsx';
+import type { Experiencia as ExperienciaItem } from '../../types.ts';
+import { colorMap } from '../../constants.ts';
+import experienciaData from '../../data/experiencia.json';
 
 const experiencias: ExperienciaItem[] = experienciaData.experiencia;
 
