@@ -9,8 +9,8 @@ const experiencias: ExperienciaItem[] = experienciaData.experiencia;
 function ExpCard({ exp, mobile }: { exp: ExperienciaItem; mobile: boolean }) {
     const color = colorMap[exp.icono] ?? '#3b82f6';
     const cardClass = mobile
-        ? 'mobile-card card-lift w-full h-96 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 flex flex-col snap-start shrink-0 overflow-hidden'
-        : 'card-lift shrink-0 w-[calc((100%-3rem)/3)] min-w-[18rem] h-96 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 flex flex-col overflow-hidden';
+        ? 'mobile-card w-full h-96 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 flex flex-col snap-start shrink-0 overflow-hidden'
+        : 'shrink-0 w-[calc((100%-3rem)/3)] min-w-[18rem] h-96 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 flex flex-col overflow-hidden';
 
     return (
         <div className={cardClass}>

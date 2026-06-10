@@ -19,13 +19,9 @@ export default function Tecnologias() {
                             {grupo.items.map((tech) => (
                                 <div
                                     key={tech.nombre}
-                                    className="tech-card group flex flex-col items-center p-3 bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-lg border border-gray-200 dark:border-gray-700"
+                                    className="tech-card flex flex-col items-center p-3 bg-white dark:bg-gray-800 rounded-xl shadow-md border border-gray-200 dark:border-gray-700"
                                 >
-                                    <img
-                                        src={tech.imagen}
-                                        alt={tech.nombre}
-                                        className="w-12 h-12 object-contain mb-1 transition-transform duration-300 group-hover:scale-110"
-                                    />
+                                    <img src={tech.imagen} alt={tech.nombre} className="w-12 h-12 object-contain mb-1" />
                                     <span className="text-xs font-medium text-gray-600 dark:text-gray-400">{tech.nombre}</span>
                                 </div>
                             ))}

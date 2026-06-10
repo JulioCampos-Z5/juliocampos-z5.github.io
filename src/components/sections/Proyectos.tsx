@@ -7,8 +7,8 @@ const proyectos: Proyecto[] = proyectosData;
 
 function ProyectoCard({ proyecto, mobile }: { proyecto: Proyecto; mobile: boolean }) {
     const cardClass = mobile
-        ? 'mobile-card card-lift w-full bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 flex flex-col snap-start shrink-0 overflow-hidden'
-        : 'card-lift shrink-0 w-[calc((100%-3rem)/3)] min-w-[18rem] bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 flex flex-col overflow-hidden';
+        ? 'mobile-card w-full bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 flex flex-col snap-start shrink-0 overflow-hidden'
+        : 'shrink-0 w-[calc((100%-3rem)/3)] min-w-[18rem] bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 flex flex-col overflow-hidden';
 
     return (
         <div className={cardClass}>

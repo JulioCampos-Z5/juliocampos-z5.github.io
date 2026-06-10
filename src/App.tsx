@@ -21,9 +21,9 @@ export default function App() {
             <main className="max-w-6xl mx-auto px-4 py-8">
                 {/* Hero con imagen panorámica y overlay */}
                 <Reveal className="mb-14">
-                    <div className="relative overflow-hidden rounded-3xl shadow-2xl group">
+                    <div className="relative overflow-hidden rounded-3xl shadow-2xl">
                         <img
-                            className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                            className="w-full h-auto object-cover"
                             src="img/Pro.jpg"
                             alt="Julio Cesar Campos Aguilar"
                         />
