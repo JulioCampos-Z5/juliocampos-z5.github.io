@@ -27,7 +27,8 @@ export default function Carousel({ total, mobileCards, desktopCards }: CarouselP
     const [mobileIndex, setMobileIndex] = useState(0);
     const [slide, setSlide] = useState(0);
     const [slideWidth, setSlideWidth] = useState(0);
-    const [visibleSlides, setVisibleSlides] = useState(1);
+    // Desplazamiento máximo: alinea el final de la pista con el borde del contenedor
+    const [maxOffset, setMaxOffset] = useState(0);
 
     const measure = useCallback(() => {
         setIsMobile(window.innerWidth < 640);
@@ -35,11 +36,12 @@ export default function Carousel({ total, mobileCards, desktopCards }: CarouselP
         const container = containerRef.current;
         if (!slider || !container) return;
         const width = getSlideWidth(slider);
-        const visible = width > 0 ? Math.floor(container.clientWidth / width) || 1 : 1;
+        const overflow = Math.max(0, slider.scrollWidth - container.clientWidth);
         setSlideWidth(width);
-        setVisibleSlides(visible);
-        setSlide((s) => Math.min(s, Math.max(0, total - visible)));
-    }, [total]);
+        setMaxOffset(overflow);
+        const lastSlide = width > 0 ? Math.ceil(overflow / width) : 0;
+        setSlide((s) => Math.min(s, lastSlide));
+    }, []);
 
     useEffect(() => {
         measure();
@@ -77,7 +79,8 @@ export default function Carousel({ total, mobileCards, desktopCards }: CarouselP
         setMobileIndex(clamped);
     };
 
-    const maxSlide = Math.max(0, total - visibleSlides);
+    const maxSlide = slideWidth > 0 ? Math.ceil(maxOffset / slideWidth) : 0;
+    const offset = Math.min(slide * slideWidth, maxOffset);
 
     const prev = () => {
         if (isMobile) scrollMobileTo(mobileIndex - 1);
@@ -91,7 +94,7 @@ export default function Carousel({ total, mobileCards, desktopCards }: CarouselP
 
     const atStart = isMobile ? mobileIndex === 0 : slide === 0;
     const atEnd = isMobile ? mobileIndex >= total - 1 : slide >= maxSlide;
-    const hideButtons = !isMobile && total <= visibleSlides;
+    const hideButtons = !isMobile && maxOffset <= 0;
 
     const buttonClass =
         'bg-white dark:bg-gray-800 p-3 rounded-full shadow-lg border border-gray-200 dark:border-gray-600 disabled:opacity-50 disabled:pointer-events-none';
@@ -115,7 +118,7 @@ export default function Carousel({ total, mobileCards, desktopCards }: CarouselP
                     <div
                         ref={desktopSliderRef}
                         className="flex gap-6 transition-transform duration-500 ease-in-out will-change-transform"
-                        style={{ transform: `translateX(${-slide * slideWidth}px)` }}
+                        style={{ transform: `translateX(${-offset}px)` }}
                     >
                         {desktopCards}
                     </div>
