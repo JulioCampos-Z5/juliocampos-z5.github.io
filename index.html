@@ -34,8 +34,8 @@
     <link rel="canonical" href="https://juliocampos-z5.github.io/">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
-    <link rel="apple-touch-icon" href="img/favicon.svg">
+    <link rel="icon" type="image/svg+xml" href="/img/favicon.svg">
+    <link rel="apple-touch-icon" href="/img/favicon.svg">
 
     <!-- Theme Color -->
     <meta name="theme-color" content="#1f2937">
@@ -45,260 +45,25 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="css/style-minimal.css">
-
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Evitar parpadeo del modo oscuro antes de que cargue React -->
     <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        'sans': ['Noto Sans', 'sans-serif']
-                    },
-                    animation: {
-                        'fadeInUp': 'fadeInUp 0.6s ease-out',
-                    }
-                }
+        (function () {
+            var saved = localStorage.getItem('darkMode');
+            var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (saved === 'true' || (saved === null && prefersDark)) {
+                document.documentElement.classList.add('dark');
             }
-        }
+        })();
     </script>
+
+    <!-- Ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
 
 <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
-    <div id="header-container"></div>
-
-    <main class="max-w-6xl mx-auto px-4 py-8">
-        <!-- Imagen de perfil -->
-        <div class="mb-12">
-            <img class="w-full h-auto rounded-2xl shadow-lg" src="img/Pro.jpg" alt="Perfil">
-        </div>
-
-        <!-- Descripción minimalista -->
-        <section class="mb-16">
-            <h2 class="text-3xl font-bold mb-6 text-left text-gray-800 dark:text-gray-100">Descripción</h2>
-            <div>
-                <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed text-left">
-                    Soy un ingeniero informático apasionado por la tecnología, con experiencia en desarrollo de
-                    aplicaciones
-                    de escritorio y web, consultoría tecnológica para pymes, y liderazgo de equipos técnicos. Me motiva
-                    aportar soluciones innovadoras y seguir aprendiendo en entornos dinámicos que impulsen mi
-                    crecimiento
-                    profesional.
-                </p>
-            </div>
-        </section>
-
-        <!-- Experiencia con desplazamiento -->
-        <section class="mb-16">
-            <h2 class="text-3xl font-bold mb-8 text-left text-gray-800 dark:text-gray-100">Experiencia</h2>
-            <div class="relative">
-                <div id="expContainer" class="mx-0 sm:mx-0 px-0 sm:px-0">
-                    <!-- Móvil -->
-                    <div class="block sm:hidden relative">
-                        <div id="mobileTrack" class="mobile-track flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory"></div>
-                    </div>
-                    <!-- Desktop -->
-                    <div class="hidden sm:block overflow-hidden">
-                        <div id="expSlider" class="flex gap-6 transition-transform duration-500 ease-in-out"></div>
-                    </div>
-                </div>
-                <!-- Botones de navegación -->
-                <div class="flex justify-end gap-3 mt-0 sm:mt-4">
-                    <button id="prevExp"
-                        class="bg-white dark:bg-gray-800 p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-600">
-                        <svg class="w-5 h-5 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor"
-                            viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-                        </svg>
-                    </button>
-                    <button id="nextExp"
-                        class="bg-white dark:bg-gray-800 p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-600">
-                        <svg class="w-5 h-5 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor"
-                            viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- Proyectos con desplazamiento -->
-        <section class="mb-16">
-            <h2 class="text-3xl font-bold mb-8 text-left text-gray-800 dark:text-gray-100">Proyectos</h2>
-            <div class="relative">
-                <div id="proyContainer" class="mx-0 sm:mx-0 px-0 sm:px-0">
-                    <!-- Móvil: Una tarjeta por vez -->
-                    <div class="block sm:hidden relative">
-                        <div id="mobileProyTrack"
-                            class="mobile-track flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory">
-                            <!-- Las tarjetas se cargarán dinámicamente aquí -->
-                        </div>
-                    </div>
-
-                    <!-- Desktop: Slider -->
-                    <div class="hidden sm:block overflow-hidden">
-                        <div id="proySlider" class="flex gap-6 transition-transform duration-500 ease-in-out">
-                            <!-- Las tarjetas se cargarán dinámicamente aquí -->
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Botones de navegación -->
-                <div class="flex justify-end gap-3 mt-0 sm:mt-4">
-                    <button id="prevProy"
-                        class="bg-white dark:bg-gray-800 p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-600">
-                        <svg class="w-5 h-5 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor"
-                            viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7">
-                            </path>
-                        </svg>
-                    </button>
-                    <button id="nextProy"
-                        class="bg-white dark:bg-gray-800 p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-600">
-                        <svg class="w-5 h-5 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor"
-                            viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
-                            </path>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- Habilidades con dos columnas -->
-        <section class="mb-16 animate-fadeInUp">
-            <h2 class="text-3xl font-bold mb-2 text-left text-gray-800 dark:text-gray-100">Habilidades</h2>
-            <p class="text-sm text-gray-600 dark:text-gray-400 mb-6">Stack técnico y habilidades clave que uso a diario.</p>
-            <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
-                <div class="grid gap-6 md:grid-cols-2"></div>
-            </div>
-        </section>
-
-        <!-- Tecnologías organizadas horizontalmente -->
-        <section class="mb-16">
-            <h2 class="text-3xl font-bold mb-8 text-left text-gray-800 dark:text-gray-100">Tecnologías y Herramientas
-            </h2>
-
-            <!-- Layout horizontal: Lenguajes | Frameworks | SQL -->
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto px-4">
-
-                <!-- Lenguajes -->
-                <div class="flex flex-col">
-                    <h3 class="text-xl font-semibold mb-4 text-center text-gray-700 dark:text-gray-300">Lenguajes</h3>
-                    <div class="grid grid-cols-3 gap-3">
-                        <div
-                            class="tech-card flex flex-col items-center p-3 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
-                            <img src="img/PHP.png" alt="PHP" class="w-12 h-12 object-contain mb-1">
-                            <span class="text-xs font-medium text-gray-600 dark:text-gray-400">PHP</span>
-                        </div>
-                        <div
-                            class="tech-card flex flex-col items-center p-3 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
-                            <img src="img/node.png" alt="Node.js" class="w-12 h-12 object-contain mb-1">
-                            <span class="text-xs font-medium text-gray-600 dark:text-gray-400">Node.js</span>
-                        </div>
-                        <div
-                            class="tech-card flex flex-col items-center p-3 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
-                            <img src="img/Typescript.svg.png" alt="TypeScript" class="w-12 h-12 object-contain mb-1">
-                            <span class="text-xs font-medium text-gray-600 dark:text-gray-400">TypeScript</span>
-                        </div>
-                        <div
-                            class="tech-card flex flex-col items-center p-3 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
-                            <img src="img/Go.png" alt="Go" class="w-12 h-12 object-contain mb-1">
-                            <span class="text-xs font-medium text-gray-600 dark:text-gray-400">Go</span>
-                        </div>
-                        <div
-                            class="tech-card flex flex-col items-center p-3 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
-                            <img src="img/C++.png" alt="C++" class="w-12 h-12 object-contain mb-1">
-                            <span class="text-xs font-medium text-gray-600 dark:text-gray-400">C++</span>
-                        </div>
-                        <div
-                            class="tech-card flex flex-col items-center p-3 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
-                            <img src="img/PYTHON.png" alt="Python" class="w-12 h-12 object-contain mb-1">
-                            <span class="text-xs font-medium text-gray-600 dark:text-gray-400">Python</span>
-                        </div>
-                        <div
-                            class="tech-card flex flex-col items-center p-3 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
-                            <img src="img/javascript.png" alt="JavaScript" class="w-12 h-12 object-contain mb-1">
-                            <span class="text-xs font-medium text-gray-600 dark:text-gray-400">JavaScript</span>
-                        </div>
-                        <div
-                            class="tech-card flex flex-col items-center p-3 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
-                            <img src="img/HTML5.png" alt="HTML5" class="w-12 h-12 object-contain mb-1">
-                            <span class="text-xs font-medium text-gray-600 dark:text-gray-400">HTML5</span>
-                        </div>
-                        <div
-                            class="tech-card flex flex-col items-center p-3 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
-                            <img src="img/CSS3.png" alt="CSS3" class="w-12 h-12 object-contain mb-1">
-                            <span class="text-xs font-medium text-gray-600 dark:text-gray-400">CSS3</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Frameworks -->
-                <div class="flex flex-col">
-                    <h3 class="text-xl font-semibold mb-4 text-center text-gray-700 dark:text-gray-300">Frameworks</h3>
-                    <div class="grid grid-cols-3 gap-3">
-                        <div
-                            class="tech-card flex flex-col items-center p-3 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
-                            <img src="img/Laravel.svg.png" alt="Laravel" class="w-12 h-12 object-contain mb-1">
-                            <span class="text-xs font-medium text-gray-600 dark:text-gray-400">Laravel</span>
-                        </div>
-                        <div
-                            class="tech-card flex flex-col items-center p-3 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
-                            <img src="img/tailwind.png" alt="Tailwind CSS" class="w-12 h-12 object-contain mb-1">
-                            <span class="text-xs font-medium text-gray-600 dark:text-gray-400">Tailwind</span>
-                        </div>
-                        <div
-                            class="tech-card flex flex-col items-center p-3 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
-                            <img src="img/Vue.png" alt="Vue.js" class="w-12 h-12 object-contain mb-1">
-                            <span class="text-xs font-medium text-gray-600 dark:text-gray-400">Vue.js</span>
-                        </div>
-                        <div
-                            class="tech-card flex flex-col items-center p-3 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
-                            <img src="img/React.svg.png" alt="React" class="w-12 h-12 object-contain mb-1">
-                            <span class="text-xs font-medium text-gray-600 dark:text-gray-400">React</span>
-                        </div>
-                        <div
-                            class="tech-card flex flex-col items-center p-3 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
-                            <img src="img/jquery.png" alt="jQuery" class="w-12 h-12 object-contain mb-1">
-                            <span class="text-xs font-medium text-gray-600 dark:text-gray-400">jQuery</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- SGBD (SQL) -->
-                <div class="flex flex-col">
-                    <h3 class="text-xl font-semibold mb-4 text-center text-gray-700 dark:text-gray-300">SGBD (SQL)</h3>
-                    <div class="grid grid-cols-2 gap-3 justify-center">
-                        <div
-                            class="tech-card flex flex-col items-center p-3 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
-                            <img src="img/MySQL.png" alt="MySQL" class="w-12 h-12 object-contain mb-1">
-                            <span class="text-xs font-medium text-gray-600 dark:text-gray-400">MySQL</span>
-                        </div>
-                        <div
-                            class="tech-card flex flex-col items-center p-3 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
-                            <img src="img/MariaDB.png" alt="MariaDB" class="w-12 h-12 object-contain mb-1">
-                            <span class="text-xs font-medium text-gray-600 dark:text-gray-400">MariaDB</span>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-
-    </main>
-
-    <div id="footer-container"></div>
-
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <script src="js/darkMode.js"></script>
-    <script src="js/carousel.js"></script>
-    <script src="js/index.js"></script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
 </body>
 
 </html>

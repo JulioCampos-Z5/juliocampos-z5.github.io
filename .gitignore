@@ -1,0 +1,16 @@
+.agents
+
+skills-lock.json
+
+# Dependencias y build
+node_modules
+dist
+
+# Logs
+*.log
+
+# Editor
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store

@@ -1,4 +1,11 @@
-/* CSS complementario para el CV minimalista con Tailwind */
+@import "tailwindcss";
+
+/* Modo oscuro basado en clase .dark (como darkMode: 'class' en Tailwind v3) */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --font-sans: 'Noto Sans', sans-serif;
+}
 
 * {
     font-family: 'Noto Sans', sans-serif;
@@ -33,11 +40,6 @@
 
 .animate-fadeInUp {
     animation: fadeInUp 0.6s ease-out;
-}
-
-/* Mejoras para el slider de experiencia */
-#expSlider {
-    will-change: transform;
 }
 
 /* Efectos hover para las habilidades */
@@ -83,11 +85,7 @@ html {
         font-size: 0.875rem;
         padding: 0.5rem 1rem;
     }
-    
-    #expSlider {
-        gap: 1rem;
-    }
-    
+
     .tech-card {
         padding: 0.75rem;
     }
@@ -105,28 +103,6 @@ html {
 
 .mobile-card {
     scroll-snap-align: start;
-}
-
-/* Efectos de carga */
-.loading-skeleton {
-    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-    background-size: 200% 100%;
-    animation: loading 1.5s infinite;
-}
-
-@keyframes loading {
-    0% {
-        background-position: 200% 0;
-    }
-    100% {
-        background-position: -200% 0;
-    }
-}
-
-/* Mejoras para el modo oscuro */
-.dark .loading-skeleton {
-    background: linear-gradient(90deg, #374151 25%, #4b5563 50%, #374151 75%);
-    background-size: 200% 100%;
 }
 
 /* Personalización del scrollbar para webkit */
@@ -166,36 +142,4 @@ button:focus-visible,
 a:focus-visible {
     outline: 2px solid #3b82f6;
     outline-offset: 2px;
-}
-
-/* Animación para el botón de modo oscuro */
-#modo {
-    transition: all 0.3s ease;
-}
-
-#modo:active {
-    transform: scale(0.95);
-}
-
-/* Mejoras para las notificaciones */
-.notification-enter {
-    transform: translateX(100%);
-    opacity: 0;
-}
-
-.notification-enter-active {
-    transform: translateX(0);
-    opacity: 1;
-    transition: all 0.3s ease;
-}
-
-.notification-exit {
-    transform: translateX(0);
-    opacity: 1;
-}
-
-.notification-exit-active {
-    transform: translateX(100%);
-    opacity: 0;
-    transition: all 0.3s ease;
 }
