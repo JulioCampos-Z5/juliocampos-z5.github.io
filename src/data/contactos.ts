@@ -21,7 +21,7 @@ export const contactos: Contacto[] = [
         id: 'whatsapp',
         icon: 'logo-whatsapp',
         iconClass: 'text-green-500',
-        href: 'https://wa.me/qr/UXKOCPRLXDN2J1',
+        href: 'https://wa.me/523329057215',
         label: 'WhatsApp',
         linkClass: 'hover:text-green-600 dark:hover:text-green-400',
     },

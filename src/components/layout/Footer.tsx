@@ -16,7 +16,7 @@ export default function Footer() {
                             aria-label={c.label}
                             className="w-10 h-10 rounded-full bg-white dark:bg-gray-700 shadow-md flex items-center justify-center text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-gray-600"
                         >
-                            <ion-icon name={c.icon} class="text-xl"></ion-icon>
+                            <ion-icon name={c.icon} class="text-xl pointer-events-none"></ion-icon>
                         </a>
                     ))}
                 </div>
