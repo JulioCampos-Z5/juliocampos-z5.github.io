@@ -23,7 +23,7 @@ export default function Carousel({ total, mobileCards, desktopCards }: CarouselP
     const desktopSliderRef = useRef<HTMLDivElement>(null);
     const scrollFrame = useRef<number>(0);
 
-    const [isMobile, setIsMobile] = useState(() => window.innerWidth < 640);
+    const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth < 640);
     const [mobileIndex, setMobileIndex] = useState(0);
     const [slide, setSlide] = useState(0);
     const [slideWidth, setSlideWidth] = useState(0);

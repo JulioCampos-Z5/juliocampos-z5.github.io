@@ -5,6 +5,7 @@ skills-lock.json
 # Dependencias y build
 node_modules
 dist
+dist-server
 
 # Logs
 *.log
