@@ -22,15 +22,15 @@ export const tecnologias: TechGroup[][] = [
         icono: 'layers-outline',
         items: [
             // JavaScript
-            { nombre: 'Electron', imagen: 'img/tech/electron.svg', claseOscuro: 'dark:brightness-175' },
-            { nombre: 'Expo Go', imagen: 'img/tech/expo.svg', claseOscuro: 'dark:invert' },
-            { nombre: 'Express', imagen: 'img/tech/express.svg', claseOscuro: 'dark:invert' },
-            { nombre: 'jQuery', imagen: 'img/tech/jquery.svg' },
-            { nombre: 'Next.js', imagen: 'img/tech/nextjs.svg' },
             { nombre: 'React', imagen: 'img/tech/react.svg' },
             { nombre: 'React Native', imagen: 'img/tech/reactnative.svg' },
             { nombre: 'Tailwind', imagen: 'img/tech/tailwindcss.svg' },
+            { nombre: 'Express', imagen: 'img/tech/express.svg', claseOscuro: 'dark:invert' },
+            { nombre: 'Next.js', imagen: 'img/tech/nextjs.svg' },
+            { nombre: 'Electron', imagen: 'img/tech/electron.svg', claseOscuro: 'dark:brightness-175' },
+            { nombre: 'Expo Go', imagen: 'img/tech/expo.svg', claseOscuro: 'dark:invert' },
             { nombre: 'Vue.js', imagen: 'img/tech/vuejs.svg' },
+            { nombre: 'jQuery', imagen: 'img/tech/jquery.svg' },
             // PHP
             { nombre: 'Laravel', imagen: 'img/tech/laravel.svg' },
             // Python
