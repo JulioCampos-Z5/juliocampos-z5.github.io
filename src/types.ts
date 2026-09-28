@@ -33,10 +33,13 @@ export interface Contacto {
 export interface Tech {
     nombre: string;
     imagen: string;
+    claseOscuro?: string;
 }
 
 export interface TechGroup {
     titulo: string;
     icono: string;
+    // Tarjetas por renglón (3 si no se indica)
+    columnas?: 1 | 2 | 3;
     items: Tech[];
 }
