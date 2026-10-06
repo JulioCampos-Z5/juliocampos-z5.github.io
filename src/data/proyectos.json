@@ -18,7 +18,8 @@
         "tecnologias": [
             "React.js",
             "TypeScript",
-            "Python"
+            "Python",
+            "GO(Golang)"
         ],
         "imagen": "",
         "link": "https://github.com/JulioCampos-Z5/Validador-de-Calidad-del-Aire",
@@ -43,14 +44,15 @@
         "titulo": "ERP",
         "descripcion": "Sistema de planificación de recursos empresariales (ERP) para pequeñas y medianas empresas. Incluye módulos para gestión de inventarios, ventas, compras, finanzas y recursos humanos.",
         "tecnologias": [
-            "Vue.js",
-            "TypeScript",
-            "Node.js"
+            "Laravel",
+            "JavaScript",
+            "Tailwind",
+            "MySQL"
         ],
         "imagen": "",
         "link": "",
         "demo": "",
-        "fecha": "2025"
+        "fecha": "2025 - 2026"
     },
     {
         "titulo": "Catalogo Online",

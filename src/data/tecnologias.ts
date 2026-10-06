@@ -39,7 +39,7 @@ export const tecnologias: TechGroup[][] = [
         ],
     }],
     [{
-        titulo: 'SGBD (SQL)',
+        titulo: 'BD (SQL)',
         icono: 'server-outline',
         columnas: 1,
         items: [
