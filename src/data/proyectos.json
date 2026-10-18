@@ -63,7 +63,33 @@
             "Tailwind"
         ],
         "imagen": "",
-        "link": "",
+        "link": "https://mgtex.mx/",
+        "demo": "",
+        "fecha": "2025"
+    },
+    {
+        "titulo": "Portal de Noticias Web para Canal Continetal de Noticias",
+        "descripcion": "Portal de Noticias Web para Canal Continetal de Noticias de Grupo Crater.",
+        "tecnologias": [
+            "Laravel",
+            "JavaScript",
+            "Tailwind"
+        ],
+        "imagen": "",
+        "link": "https://portalccn.com/",
+        "demo": "",
+        "fecha": "2026"
+    },
+    {
+        "titulo": "Pagina Web para cafeteria",
+        "descripcion": "Pagina Web para Tonnys Cafeteria de Grupo Crater.",
+        "tecnologias": [
+            "php",
+            "JavaScript",
+            "Tailwind"
+        ],
+        "imagen": "",
+        "link": "https://tonnyscafeteria.com/",
         "demo": "",
         "fecha": "2025"
     }
