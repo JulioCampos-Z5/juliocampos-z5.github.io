@@ -10,6 +10,7 @@ export const tecnologias: TechGroup[][] = [
             { nombre: 'Node.js', imagen: 'img/tech/nodejs.svg' },
             { nombre: 'TypeScript', imagen: 'img/tech/typescript.svg' },
             { nombre: 'Go', imagen: 'img/tech/go.svg' },
+            { nombre: 'Kotlin', imagen: 'img/tech/kotlin.svg' },
             { nombre: 'C++', imagen: 'img/tech/cplusplus.svg' },
             { nombre: 'Python', imagen: 'img/tech/python.svg' },
             { nombre: 'JavaScript', imagen: 'img/tech/javascript.svg' },
@@ -29,6 +30,7 @@ export const tecnologias: TechGroup[][] = [
             { nombre: 'Next.js', imagen: 'img/tech/nextjs.svg' },
             { nombre: 'Electron', imagen: 'img/tech/electron.svg', claseOscuro: 'dark:brightness-175' },
             { nombre: 'Expo Go', imagen: 'img/tech/expo.svg', claseOscuro: 'dark:invert' },
+            { nombre: 'Android Studio', imagen: 'img/tech/androidstudio.svg' },
             { nombre: 'Vue.js', imagen: 'img/tech/vuejs.svg' },
             { nombre: 'jQuery', imagen: 'img/tech/jquery.svg' },
             // PHP
